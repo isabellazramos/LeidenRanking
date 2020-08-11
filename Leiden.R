@@ -53,7 +53,7 @@ Nruniversidades$latitude <- as.numeric(Nruniversidades$latitude)
 Nruniversidades$longitude <- as.numeric(Nruniversidades$longitude)
 Nruniversidades$NrUniv <- as.numeric(Nruniversidades$NrUniv)
 
-Nruniversidades %>% 
+data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University)) %>% 
   leaflet() %>% 
   addTiles() %>% 
   addMarkers(lng = ~longitude, lat = ~latitude, popup = ~NrUniv,
@@ -165,3 +165,5 @@ teste <- brazil %>%
   filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
          Field=="MATHEMATICS AND COMPUTER SCIENCE", 
          Frac_counting=="1") %>% group_by(Per_Init) 
+
+
