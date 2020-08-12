@@ -10,14 +10,14 @@
 # Define UI for application
 shinyUI(fluidPage(
     navbarPage(title="Leiden Ranking",
-               tabPanel("Menu1",
+               tabPanel("Descrição",
                         tabsetPanel(
-                            tabPanel("SubMenu1.1",
+                            tabPanel("Sobre o Dashboard",
                                      fluidRow(
                                          column(12,
                                                 DT::dataTableOutput("table1")))),
                             ##
-                            tabPanel("SubMenu1.2",
+                            tabPanel("Banco de Dados",
                                      fluidRow(column(3, 
                                                      selectInput("Opções", 
                                                                  strong("Escolha uma opção:"), 
@@ -25,9 +25,19 @@ shinyUI(fluidPage(
                                                                            "Opção 2"="age3"),
                                                                  selected = "age2")),
                                               column(9,
-                                                plotlyOutput("plot1", height = 800))))
+                                                plotlyOutput("plot1", height = 800)))),
                             
                             ##
+                            tabPanel("subMenu3",
+                                     fluidRow(column(3, 
+                                                     selectInput("options", 
+                                                                 strong("Escolha uma opção:"), 
+                                                                 choices=c("UFV"="UNIVERSIDADE FEDERAL DE VICOSA",
+                                                                           "UFPB"="FEDERAL UNIVERSITY OF PARAIBA",
+                                                                           "UFPE"="FEDERAL UNIVERSITY OF PERNAMBUCO"),
+                                                                 selected = "age2")),
+                                              column(9,
+                                                     plotlyOutput("plot11", height = 800))))
                             
                         )# barra de navegacao interna
                     ),# barra de navegacao superior (Dados do Participante)
@@ -44,8 +54,23 @@ shinyUI(fluidPage(
                           
                           
                         )# barra de navegacao interna
+               ),# barra de navegacao superior (Dados da Escola)
+               
+               tabPanel("Menu3",
+                        tabsetPanel(
+                          ##
+                          tabPanel("SubMenu3.1",
+                                   fluidRow(column(9,
+                                                   leafletOutput("plot4", height = 600)))),
+                          tabPanel("SubMenu3.2",
+                                   fluidRow(column(9,
+                                                   plotlyOutput("plot5", height = 600))))
+                          
+                          
+                        )# barra de navegacao interna
                )# barra de navegacao superior (Dados da Escola)
                
     )#navbarPage
 )#fluidPage
 )#shinyUI
+

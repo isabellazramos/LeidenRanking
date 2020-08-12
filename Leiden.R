@@ -43,7 +43,7 @@ library("htmlTable")
 data <- readRDS("LeidenRanking.Rds")
 
 brazil <- data %>% filter(Country=="BRAZIL")
-unique(data$Country)
+unique(brazil$University)
 
 Nruniversidades <- data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
 df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)
@@ -82,9 +82,10 @@ Nruniversidades %>%
   leaflet() %>% addTiles() %>% 
   addCircleMarkers(lng = ~longitude, lat = ~latitude, 
              weight = 10, color = "#03F", 
-             opacity = 0.5,
+             opacity = 0.1,
              stroke = FALSE,
              popup = ~ NrUniv)
+
 
 
 # library(leaflet)
@@ -134,7 +135,7 @@ plot2 <- brazil %>%
   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
 ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
 
-
+library(ggthemes)
 plot3 <- brazil %>% 
   filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
          Field=="MATHEMATICS AND COMPUTER SCIENCE", 

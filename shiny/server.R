@@ -61,5 +61,22 @@ shinyServer(function(input, output, session) {
        ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
        
    }) 
+   
+   output$plot11 <- renderPlotly({
+       
+       plot21 <- dados %>% filter(Country=="BRAZIL") %>% 
+           filter(University==input$options,
+                  Period=="2014–2017", 
+                  Frac_counting=="1") %>% 
+           ggplot(aes(Field, impact_P, fill=Field, label= round(impact_P, digits = 2), 
+                      text=paste("Produção:",impact_P, "<br>", 
+                                 "Período:", Period))) +
+           geom_col(aes(Field, impact_P), show.legend = FALSE) + 
+           xlab("Área Ciêntífica (2014-2017)") + ylab("Número de Publicações com Impacto") + 
+           geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw() +
+           theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+       ggplotly(plot21, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+       
+   })
     
 })
