@@ -135,6 +135,19 @@ plot2 <- brazil %>%
   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
 ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
 
+plot2 <- brazil %>% 
+  filter(University=="FEDERAL UNIVERSITY OF PARAIBA",
+         Period=="2014–2017", 
+         Frac_counting=="1") %>% 
+  ggplot(aes(Field, P_top1, fill=Field, label= round(P_top1, digits = 2), 
+             text=paste("P Top 1% :",P_top1, "<br>", 
+                        "Período:", Period))) +
+  geom_col(aes(Field, P_top1), show.legend = FALSE) + 
+  xlab("Área Ciêntífica (2014-2017)") + ylab("O número e a proporção de publicações de uma universidade que pertencem ao 1% mais citado com mais frequência.") + 
+  geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
+ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+
+
 library(ggthemes)
 plot3 <- brazil %>% 
   filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
