@@ -1,2 +1,2 @@
 # LeidenRanking
-Projeto para análise de dados do Leiden Rankin
+Projeto para análise de dados do Leiden Ranking
