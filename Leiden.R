@@ -43,7 +43,7 @@ library("htmlTable")
 data <- readRDS("LeidenRanking.Rds")
 
 brazil <- data %>% filter(Country=="BRAZIL")
-unique(data$Country)
+unique(brazil$University)
 
 Nruniversidades <- data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
 df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)
@@ -53,7 +53,7 @@ Nruniversidades$latitude <- as.numeric(Nruniversidades$latitude)
 Nruniversidades$longitude <- as.numeric(Nruniversidades$longitude)
 Nruniversidades$NrUniv <- as.numeric(Nruniversidades$NrUniv)
 
-Nruniversidades %>% 
+data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University)) %>% 
   leaflet() %>% 
   addTiles() %>% 
   addMarkers(lng = ~longitude, lat = ~latitude, popup = ~NrUniv,
@@ -82,9 +82,10 @@ Nruniversidades %>%
   leaflet() %>% addTiles() %>% 
   addCircleMarkers(lng = ~longitude, lat = ~latitude, 
              weight = 10, color = "#03F", 
-             opacity = 0.5,
+             opacity = 0.1,
              stroke = FALSE,
              popup = ~ NrUniv)
+
 
 
 # library(leaflet)
@@ -134,7 +135,20 @@ plot2 <- brazil %>%
   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
 ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
 
+plot6 <- brazil %>% 
+  filter(University=="FEDERAL UNIVERSITY OF PARAIBA",
+         Period=="2014–2017", 
+         Frac_counting=="1") %>% 
+  ggplot(aes(Field, P_top1, fill=Field, label= round(P_top1, digits = 2), 
+             text=paste("P Top 1% :",P_top1, "<br>", 
+                        "Período:", Period))) +
+  geom_col(aes(Field, P_top1), show.legend = FALSE) + 
+  xlab("Área Ciêntífica (2014-2017)") + ylab("O número e a proporção de publicações de uma universidade que pertencem ao 1% mais citado com mais frequência.") + 
+  geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
+ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
 
+
+library(ggthemes)
 plot3 <- brazil %>% 
   filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
          Field=="MATHEMATICS AND COMPUTER SCIENCE", 
@@ -165,3 +179,5 @@ teste <- brazil %>%
   filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
          Field=="MATHEMATICS AND COMPUTER SCIENCE", 
          Frac_counting=="1") %>% group_by(Per_Init) 
+
+
