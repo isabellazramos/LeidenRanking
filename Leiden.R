@@ -135,7 +135,7 @@ plot2 <- brazil %>%
   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
 ggplotly(plot2, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
 
-plot2 <- brazil %>% 
+plot6 <- brazil %>% 
   filter(University=="FEDERAL UNIVERSITY OF PARAIBA",
          Period=="2014–2017", 
          Frac_counting=="1") %>% 
