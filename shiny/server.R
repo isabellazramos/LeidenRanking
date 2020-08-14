@@ -285,4 +285,84 @@ shinyServer(function(input, output, session) {
            
        }
    )
+   output$plot19 <- renderPlotly(
+      {
+         plot19 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options14,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_collab, fill=Field, label= round(P_collab, digits = 2), 
+                       text=paste("P_collab :",P_collab, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab(" O número de publicações de uma universidade que foram coautoria de uma ou mais outras organizações. ") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot19, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot20 <- renderPlotly(
+      {
+         plot20 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options15,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_int_collab, fill=Field, label= round(P_int_collab, digits = 2), 
+                       text=paste("P_int_collab :",P_int_collab, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_int_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de uma universidade que foram coautoria de dois ou mais países.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot20, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot21 <- renderPlotly(
+      {
+         plot21 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options16,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_industry_collab, fill=Field, label= round(P_industry_collab, digits = 2), 
+                       text=paste("P_industry_collab :",P_industry_collab, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_industry_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot21, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot22 <- renderPlotly(
+      {
+         plot22 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options17,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_short_dist_collab, fill=Field, label= round(P_short_dist_collab, digits = 2), 
+                       text=paste("P_short_dist_collab :",P_short_dist_collab, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_short_dist_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot22, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot23 <- renderPlotly(
+      {
+         plot23 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options18,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_long_dist_collab, fill=Field, label= round(P_long_dist_collab, digits = 2), 
+                       text=paste("P_long_dist_collab :",P_long_dist_collab, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_long_dist_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot23, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
 })
