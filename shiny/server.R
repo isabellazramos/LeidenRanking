@@ -365,4 +365,69 @@ shinyServer(function(input, output, session) {
          
       }
    )
+   output$plot24 <- renderPlotly(
+      {
+         plot24 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options19,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_OA, fill=Field, label= round(P_OA, digits = 2), 
+                       text=paste("P_OA :",P_OA, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_OA), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de acesso aberto de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot24, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot25 <- renderPlotly(
+      {
+         plot25 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options20,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_gold_OA, fill=Field, label= round(P_gold_OA, digits = 2), 
+                       text=paste("P_gold_OA :",P_gold_OA, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_gold_OA), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab(" O número de ouro em publicações de acesso aberto de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot25, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot26 <- renderPlotly(
+      {
+         plot26 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options21,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_hybrid_OA, fill=Field, label= round(P_hybrid_OA, digits = 2), 
+                       text=paste("P_hybrid_OA :",P_hybrid_OA, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_hybrid_OA), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações híbridas de acesso aberto de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot26, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot27 <- renderPlotly(
+      {
+         plot27 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options22,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_bronze_OA, fill=Field, label= round(P_bronze_OA, digits = 2), 
+                       text=paste("P_bronze_OA :",P_bronze_OA, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_bronze_OA), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de acesso aberto em bronze de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot27, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   
 })
