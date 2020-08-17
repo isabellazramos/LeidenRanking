@@ -429,5 +429,36 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   
+   output$plot28 <- renderPlotly(
+      {
+         plot28 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options23,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_green_OA, fill=Field, label= round(P_green_OA, digits = 2), 
+                       text=paste("P_green_OA :",P_green_OA, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_green_OA), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações verdes de acesso aberto de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot28, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot29 <- renderPlotly(
+      {
+         plot29 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options24,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, P_OA_unknown, fill=Field, label= round(P_OA_unknown, digits = 2), 
+                       text=paste("P_OA_unknown :",P_OA_unknown, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, P_OA_unknown), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot29, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
 })
