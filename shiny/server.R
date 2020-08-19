@@ -461,4 +461,84 @@ shinyServer(function(input, output, session) {
          
       }
    )
+   output$plot30 <- renderPlotly(
+      {
+         plot30 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options25,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, gender_A, fill=Field, label= round(gender_A, digits = 2), 
+                       text=paste("gender_A :",gender_A, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, gender_A), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número total de autorias de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot30, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot31 <- renderPlotly(
+      {
+         plot31 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options26,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, gender_A_MF, fill=Field, label= round(gender_A_MF, digits = 2), 
+                       text=paste("gender_A_MF :",gender_A_MF, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, gender_A_MF), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de autorias de uma universidade pelas quais o gênero é conhecido.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot31, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot32 <- renderPlotly(
+      {
+         plot32 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options27,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, A_gender_unknown, fill=Field, label= round(A_gender_unknown, digits = 2), 
+                       text=paste("A_gender_unknown :",A_gender_unknown, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, A_gender_unknown), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de autorias de uma universidade para as quais o gênero é desconhecido.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot32, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot33 <- renderPlotly(
+      {
+         plot33 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options28,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, A_M, fill=Field, label= round(A_M, digits = 2), 
+                       text=paste("A_M :",A_M, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, A_M), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de autorias masculinas de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot33, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot34 <- renderPlotly(
+      {
+         plot34 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options29,
+                   Period=="2014–2017") %>% 
+            ggplot(aes(Field, A_F, fill=Field, label= round(A_F, digits = 2), 
+                       text=paste("A_F :",A_F, "<br>", 
+                                  "Período:", Period))) +
+            geom_col(aes(Field, A_F), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("O número de autorias femininas de uma universidade.") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
+            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot34, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
 })
