@@ -41,6 +41,7 @@ library("htmlTable")
 # 
 # saveRDS(data, file="LeidenRanking.Rds")
 data <- readRDS("LeidenRanking.Rds")
+data2 <- read.csv("LatLongBrazilianUniversities.csv")
 
 brazil <- data %>% filter(Country=="BRAZIL")
 unique(brazil$University)
@@ -59,6 +60,12 @@ data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(
   addMarkers(lng = ~longitude, lat = ~latitude, popup = ~NrUniv,
              clusterOptions = markerClusterOptions(maxClusterRadius = 15))
 
+#MAPA DO BRASIL
+data2 %>% 
+  leaflet() %>% 
+  addTiles() %>% 
+  addMarkers(lng = data2$Longitude, lat = data2$Latitude, popup = data2$University,
+             clusterOptions = markerClusterOptions(maxClusterRadius = 15))
 
 Nruniversidades %>% 
   leaflet() %>% 
