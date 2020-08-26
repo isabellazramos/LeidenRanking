@@ -111,6 +111,14 @@ science <- data %>% group_by(Field) %>% summarise(n())
 ImpactP <- data %>% group_by(Country, University) %>% 
   summarise(Impacto=sum(impact_P)) %>% arrange(desc(Impacto))
 
+#PIECHART
+ImpactPBrazil <- ImpactP %>% filter(Country=="BRAZIL")
+fig <- plot_ly(type='pie', labels=labels,values= ImpactPBrazil$Impacto, 
+               textinfo='label+percent',
+               insidetextorientation='radial')
+fig <- fig %>% layout(title = "Publicações das universidades brasileiras durante o período de 2006-2017")
+fig
+
 
 
 Nr <- data %>% group_by(Country, University, Per_Init, Per_End) %>% 
