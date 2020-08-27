@@ -119,7 +119,18 @@ fig <- plot_ly(type='pie', labels=labels,values= ImpactPBrazil$Impacto,
 fig <- fig %>% layout(title = "Publicações das universidades brasileiras durante o período de 2006-2017")
 fig
 
-
+#BOXPLOT PUBLICAÇÔES
+ImpactP_AllSciences <- brazil %>% filter(Field == "ALL SCIENCES")
+boxplot <- plot_ly(ImpactP_AllSciences,
+              y = ~impact_P,
+              color = ~University,
+              type = "box") %>% 
+  layout(title = "Publicações das universidades brasileiras 2006-2017",
+         xaxis = list(title = "Universidades",
+                      zeroline = FALSE),
+         yaxis = list(title = "Publicações",
+                      zeroline = FALSE))
+boxplot
 
 Nr <- data %>% group_by(Country, University, Per_Init, Per_End) %>% 
   summarise(Impacto=sum(impact_P)) %>% arrange(desc(Impacto)) 
