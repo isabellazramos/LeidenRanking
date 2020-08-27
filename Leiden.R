@@ -111,7 +111,7 @@ science <- data %>% group_by(Field) %>% summarise(n())
 ImpactP <- data %>% group_by(Country, University) %>% 
   summarise(Impacto=sum(impact_P)) %>% arrange(desc(Impacto))
 
-#PIECHART
+#PIECHART PUBLICAÇÔES
 ImpactPBrazil <- ImpactP %>% filter(Country=="BRAZIL")
 fig <- plot_ly(type='pie', labels=labels,values= ImpactPBrazil$Impacto, 
                textinfo='label+percent',
