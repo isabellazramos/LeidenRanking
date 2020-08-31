@@ -39,10 +39,10 @@ library("htmlTable")
 # data$Country  <- str_to_upper(data$Country)
 # data$Field   <- str_to_upper(data$Field)
 # 
-# saveRDS(data, file="LeidenRanking.Rds")
+#saveRDS(data, file="LeidenRanking.Rds")
 data <- readRDS("LeidenRanking.Rds")
-data2 <- read.csv("LatLongBrazilianUniversities.csv")
-
+#data2 <- read.csv("LatLongBrazilianUniversities.csv")
+#data <- left_join(data,data2,by = "University")
 brazil <- data %>% filter(Country=="BRAZIL")
 unique(brazil$University)
 
