@@ -89,7 +89,7 @@ shinyServer(function(input, output, session) {
                           text=paste("P Top 1% :",P_top1, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, P_top1), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top1") + ggtitle("O número de publicações de uma universidade que pertencem ao 1% mais citado com mais frequência.")+ 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top1") + ggtitle("O número de publicações de uma universidade que pertencem ao 1% mais citado")+ 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat6$P_top1)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot6, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -106,7 +106,7 @@ shinyServer(function(input, output, session) {
                           text=paste("PP Top 1% :",PP_top1, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, PP_top1), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado com mais frequência.") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat13$PP_top1)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot13, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -124,7 +124,7 @@ shinyServer(function(input, output, session) {
                           text=paste("P Top 5% :",P_top5, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, P_top5), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado com mais frequência.") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat7$P_top5)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -141,7 +141,7 @@ shinyServer(function(input, output, session) {
                           text=paste("PP Top 5% :",PP_top5, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, PP_top5), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top5")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 5% mais citado com mais frequência.") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top5")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 5% mais citado") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat14$PP_top5)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot14, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -159,7 +159,7 @@ shinyServer(function(input, output, session) {
                           text=paste("P Top 10% :",P_top10, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, P_top10), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top10")+ ggtitle("O número de publicações de uma universidade que pertencem ao 10% mais citado com mais frequência.") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top10")+ ggtitle("O número de publicações de uma universidade que pertencem ao 10% mais citado") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat8$P_top10)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot8, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -176,7 +176,7 @@ shinyServer(function(input, output, session) {
                           text=paste("PP Top 10% :",PP_top10, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, PP_top10), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top10")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 10% mais citado com mais frequência") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top10")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 10% mais citado") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat15$PP_top10)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot15, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -193,7 +193,7 @@ shinyServer(function(input, output, session) {
                           text=paste("P Top 50% :",P_top50, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, P_top50), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top50")+ ggtitle("O número de publicações de uma universidade que pertencem ao 50% mais citado com mais frequência") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab("P_top50")+ ggtitle("O número de publicações de uma universidade que pertencem ao 50% mais citado") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat9$P_top50)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot9, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -210,7 +210,7 @@ shinyServer(function(input, output, session) {
                           text=paste("PP Top 50% :",PP_top50, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, PP_top50), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top50") + ggtitle("A proporção de publicações de uma universidade que pertencem ao 50% mais citado com mais frequência")+
+               xlab("Área Ciêntífica (2014-2017)") + ylab("PP_top50") + ggtitle("A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat16$PP_top50)+20))+
                theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot16, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")

@@ -21,7 +21,7 @@ library("htmlTable")
 library("stringr")
 library("esquisse")
 library("gridExtra")
-library("ggpubr")
+#library("ggpubr")
 library("RColorBrewer")
 library("data.table")
 options(DT.options = list(scrollY="300px",scrollX="300px", 
