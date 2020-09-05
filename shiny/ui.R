@@ -13,8 +13,6 @@ shinyUI(fluidPage(
                tabPanel("Descrição",
                         tabsetPanel(
                             tabPanel("Sobre o Dashboard",
-<<<<<<< HEAD
-<<<<<<< HEAD
                                      fluidRow(
                                        column(12,
                                       h4(style="text-align: justify;","   O dashboard tem o intuito de analisar e mostrar de forma gráfica 
@@ -24,10 +22,6 @@ shinyUI(fluidPage(
                                       h4(style = "text-align: justify", "O nosso foco é fazer análises focando as universidades do Brasil
                                          que participam do ranking, que ao todo são 23 universidades."),
                                               ))
-=======
->>>>>>> f40774a357c9cdd3b2e59c8fec9e61cd66cd5a9a
-=======
->>>>>>> f40774a357c9cdd3b2e59c8fec9e61cd66cd5a9a
                                      ),
                             ##
                             tabPanel("Banco de Dados",
