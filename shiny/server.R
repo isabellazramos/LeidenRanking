@@ -22,6 +22,15 @@ shinyServer(function(input, output, session) {
                       ))
     })
     
+    output$plot37 <- renderPlot({
+       data2 %>% 
+          leaflet() %>% 
+          addTiles() %>% 
+          addMarkers(lng = data2$Longitude, lat = data2$Latitude, popup = data2$University,
+                     clusterOptions = markerClusterOptions(maxClusterRadius = 15))
+       
+    })
+    
     output$plot1 <- renderPlotly({
         plot1 <- dados %>% filter(Country=="BRAZIL") %>% 
             filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
@@ -301,6 +310,22 @@ shinyServer(function(input, output, session) {
          
       }
    )
+   output$plot35 <- renderPlotly(
+      {
+         dat35 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options30,
+                   Period=="2014–2017", Frac_counting == "0") 
+         plot35 <- ggplot(dat35,aes(Field, PP_collab, fill=Field, label= round(PP_collab, digits = 2), 
+                                    text=paste("PP_collab :",PP_collab, "<br>", 
+                                               "Período:", Period))) +
+            geom_col(aes(Field, PP_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_collab")+ggtitle("A proporção de publicações de uma universidade que foram coautoria de uma ou mais outras organizações") + 
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat35$PP_collab)+20))+
+            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+         ggplotly(plot35, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
    output$plot20 <- renderPlotly(
       {
          dat20 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -314,6 +339,22 @@ shinyServer(function(input, output, session) {
             geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat20$P_int_collab)+20))+
             theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
          ggplotly(plot20, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot36 <- renderPlotly(
+      {
+         dat36 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$options31,
+                   Period=="2014–2017", Frac_counting == "0")
+         plot36 <- ggplot(dat36, aes(Field, PP_int_collab, fill=Field, label= round(PP_int_collab, digits = 2), 
+                                     text=paste("PP_int_collab :",PP_int_collab, "<br>", 
+                                                "Período:", Period))) +
+            geom_col(aes(Field, PP_int_collab), show.legend = FALSE) + 
+            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_int_collab") + ggtitle("A proporção de publicações de uma universidade que foram coautoria de dois ou mais países")+
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat36$PP_int_collab)+20))+
+            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+         ggplotly(plot36, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          
       }
    )

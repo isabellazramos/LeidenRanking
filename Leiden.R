@@ -41,7 +41,7 @@ library("htmlTable")
 # 
 #saveRDS(data, file="LeidenRanking.Rds")
 data <- readRDS("LeidenRanking.Rds")
-#data2 <- read.csv("LatLongBrazilianUniversities.csv")
+data2 <- read.csv("LatLongBrazilianUniversities.csv")
 #data <- left_join(data,data2,by = "University")
 brazil <- data %>% filter(Country=="BRAZIL")
 unique(brazil$University)

@@ -21,8 +21,14 @@ shinyUI(fluidPage(
                                         indicadores diversos, e seus resultados podem ser acessados pelo menu do dashboard."),
                                       h4(style = "text-align: justify", "O nosso foco é fazer análises focando as universidades do Brasil
                                          que participam do ranking, que ao todo são 23 universidades."),
-                                              ))
-                                     ),
+                                              )),
+                                     column(12,
+                                            data2 %>% 
+                                              leaflet() %>% 
+                                              addTiles() %>% 
+                                              addMarkers(lng = data2$Longitude, lat = data2$Latitude, popup = data2$Sigla,
+                                                         clusterOptions = markerClusterOptions(maxClusterRadius = 15))
+                                     )),
                             ##
                             tabPanel("Banco de Dados",
                                      fluidRow(
@@ -30,9 +36,9 @@ shinyUI(fluidPage(
                                               DT::dataTableOutput("table1"))))
                             
                         )# barra de navegacao interna
-                    ),# barra de navegacao superior (Dados do Participante)
+                    ),# barra de navegacao superior 
                
-            # barra de navegacao superior (Dados da Escola)
+            # barra de navegacao superior 
                
                tabPanel("Indicadores de Impacto Científico",
                         tabsetPanel(
@@ -550,6 +556,37 @@ shinyUI(fluidPage(
                                                                selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
                                             column(9,
                                                    plotlyOutput("plot19")))),
+                          tabPanel("PP_collab",
+                                   fluidRow(column(3,
+                                                   selectInput("options30", 
+                                                               strong("Escolha uma opção:"), 
+                                                               choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
+                                                                         "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
+                                                                         "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
+                                                                         "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
+                                                                         "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
+                                                                         "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
+                                                                         "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
+                                                                         "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
+                                                                         "UEM" = "STATE UNIVERSITY OF MARINGA",               
+                                                                         "UNB" = "UNIVERSIDADE DE BRASILIA",                 
+                                                                         "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
+                                                                         "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
+                                                                         "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
+                                                                         "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
+                                                                         "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
+                                                                         "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
+                                                                         "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
+                                                                         "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
+                                                                         "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
+                                                                         "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
+                                                                         "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
+                                                                         "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
+                                                                         "USP" = "UNIVERSITY OF SAO PAULO"),
+                                                               selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
+                                            column(9,
+                                                   plotlyOutput("plot35"))))
+                          ,
                           tabPanel("P_int_collab",
                                    fluidRow(column(3,
                                                    selectInput("options15", 
@@ -580,6 +617,37 @@ shinyUI(fluidPage(
                                                                selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
                                             column(9,
                                                    plotlyOutput("plot20")))),
+                          tabPanel("PP_int_collab",
+                                   fluidRow(column(3,
+                                                   selectInput("options31", 
+                                                               strong("Escolha uma opção:"), 
+                                                               choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
+                                                                         "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
+                                                                         "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
+                                                                         "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
+                                                                         "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
+                                                                         "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
+                                                                         "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
+                                                                         "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
+                                                                         "UEM" = "STATE UNIVERSITY OF MARINGA",               
+                                                                         "UNB" = "UNIVERSIDADE DE BRASILIA",                 
+                                                                         "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
+                                                                         "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
+                                                                         "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
+                                                                         "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
+                                                                         "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
+                                                                         "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
+                                                                         "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
+                                                                         "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
+                                                                         "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
+                                                                         "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
+                                                                         "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
+                                                                         "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
+                                                                         "USP" = "UNIVERSITY OF SAO PAULO"),
+                                                               selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
+                                            column(9,
+                                                   plotlyOutput("plot36"))))
+                          ,
                           tabPanel("P_industry_collab",
                                   
                                    fluidRow(column(3,
