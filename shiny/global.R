@@ -49,6 +49,6 @@ dred = 'rgb(100,30,30)'
 
 ##############################################################################
 ## DATA SOURCES
-dados <- readRDS("LeidenRanking.Rds")
+dados <- readRDS("LeidenRanking2020.Rds")
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")
