@@ -38,6 +38,7 @@ library("htmlTable")
 # data$University <- str_to_upper(data$University)
 # data$Country  <- str_to_upper(data$Country)
 # data$Field   <- str_to_upper(data$Field)
+<<<<<<< HEAD
 # data$impact_P <- if_else(data$Frac_counting=="0",round(data$impact_P),data$impact_P) 
 # data$P_top1 <- if_else(data$Frac_counting=="0",round(data$P_top1),data$P_top1) 
 # data$P_top5 <- if_else(data$Frac_counting=="0",round(data$P_top5),data$P_top5) 
@@ -57,8 +58,13 @@ library("htmlTable")
 # data <- modify_if(data, ~is.numeric(.), ~round(., 2))
 # saveRDS(data, file="LeidenRanking2020.Rds")
 data <- readRDS("LeidenRanking2020.Rds")
+=======
+# 
+#saveRDS(data, file="LeidenRanking.Rds")
+data <- readRDS("LeidenRanking.Rds")
+>>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
 data2 <- read.csv("LatLongBrazilianUniversities.csv")
-
+#data <- left_join(data,data2,by = "University")
 brazil <- data %>% filter(Country=="BRAZIL")
 unique(brazil$University)
 
@@ -135,7 +141,18 @@ fig <- plot_ly(type='pie', labels=labels,values= ImpactPBrazil$Impacto,
 fig <- fig %>% layout(title = "Publicações das universidades brasileiras durante o período de 2006-2017")
 fig
 
-
+#BOXPLOT PUBLICAÇÔES
+ImpactP_AllSciences <- brazil %>% filter(Field == "ALL SCIENCES")
+boxplot <- plot_ly(ImpactP_AllSciences,
+              y = ~impact_P,
+              color = ~University,
+              type = "box") %>% 
+  layout(title = "Publicações das universidades brasileiras 2006-2017",
+         xaxis = list(title = "Universidades",
+                      zeroline = FALSE),
+         yaxis = list(title = "Publicações",
+                      zeroline = FALSE))
+boxplot
 
 Nr <- data %>% group_by(Country, University, Per_Init, Per_End) %>% 
   summarise(Impacto=sum(impact_P)) %>% arrange(desc(Impacto)) 
