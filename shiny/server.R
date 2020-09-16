@@ -89,7 +89,7 @@ shinyServer(function(input, output, session) {
                           text=paste("P Top 1% :",P_top1, "<br>", 
                                      "Período:", Period))) +
                geom_col(aes(Field, P_top1), show.legend = FALSE) + 
-               xlab("Área Ciêntífica (2014-2017)") + ylab("O número de publicações de uma universidade que pertencem ao 1% mais citado com mais frequência.") + 
+               xlab("Área Ciêntífica (2014-2017)") + ylab(" ") + ggtitle("O número de publicações de uma universidade que pertencem ao 1% mais citado com mais frequência.")+
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+
                theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
            ggplotly(plot6, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
