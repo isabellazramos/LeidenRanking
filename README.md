@@ -1,2 +1,14 @@
-# LeidenRanking
-Projeto para análise de dados do Leiden Ranking
+# Análises de dados do Leiden Ranking
+O projeto se trata de a criação de uma aplicação feita em R, com o Shiny, um sistema para desenvolvimento de aplicações web usando o R. O utilizamos com o intuito de trazer de maneira gráfica, análises publicadas pelo Leiden Ranking sobre universidades de todo mundo.
+O Ranking CWTS Leiden é um ranking anual global da universidade baseado exclusivamente em indicadores bibliométricos, ele oferece informações importantes sobre o desempenho científico de mais de 1000 grandes universidades em todo o mundo através de diversos indicadores.
+
+## Tecnologias
+
+## Como Usar?
+
+## Screenshots
+
+## Contribuição
+
+## Licença
+[MIT](https://choosealicense.com/licenses/mit/)
