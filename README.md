@@ -9,7 +9,6 @@ Utilizamos para as análises os últimos resultados publicados pelo Leiden Ranki
 
 ## Tecnologias
 
-
 ## Como Usar?
 
 ## Screenshots
