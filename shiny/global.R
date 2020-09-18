@@ -21,7 +21,7 @@ library("htmlTable")
 library("stringr")
 library("esquisse")
 library("gridExtra")
-library("ggpubr")
+#library("ggpubr")
 library("RColorBrewer")
 library("data.table")
 options(DT.options = list(scrollY="300px",scrollX="300px", 
@@ -49,6 +49,11 @@ dred = 'rgb(100,30,30)'
 
 ##############################################################################
 ## DATA SOURCES
+<<<<<<< HEAD
+dados <- readRDS("LeidenRanking2020.Rds")
+=======
 dados <- readRDS("LeidenRanking.Rds")
+data2 <- read.csv("LatLongBrazilianUniversities.csv")
+>>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")
