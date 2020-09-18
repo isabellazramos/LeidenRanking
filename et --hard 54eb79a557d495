@@ -1,0 +1,275 @@
+[33mcommit e872fc5abbcc9c647c0ef67ac961c4220f6bfb07[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Merge: 210ed10 a118091
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Fri Sep 18 11:00:23 2020 -0300
+
+    Merge branch 'master' of https://github.com/fsbmat-ufv/LeidenRanking
+
+[33mcommit a11809113a93786199bd627461cdd77d2c364301[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 18 09:32:41 2020 -0300
+
+    update read me
+
+[33mcommit c080207880f233254de7ed62d082ae4053389956[m
+Merge: 557d495 aca1b10
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 18 09:31:30 2020 -0300
+
+    updates read me
+    
+    Merge branch 'master' of https://github.com/fsbmat-ufv/LeidenRanking
+    
+    # Conflicts:
+    #       README.md
+
+[33mcommit 557d495c2505995a4fb73ebc4fb774e9d685d148[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 18 09:23:14 2020 -0300
+
+    updates read me
+
+[33mcommit a82ffd0d932020448c187ee4db370a4345f7b613[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 18 09:16:46 2020 -0300
+
+    update readme
+
+[33mcommit aca1b10dbd57d5a1ea05c56e1c4b14da2c7d7414[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 18 09:16:46 2020 -0300
+
+    update readme
+
+[33mcommit 210ed10cbc6f24be9eb98a526c970433bb6ee9ec[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Sep 16 14:01:01 2020 -0300
+
+    clear2
+
+[33mcommit 9df30101b57b1822d6f5b5d237bce00922c7079e[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Sep 16 14:00:43 2020 -0300
+
+    Clear
+
+[33mcommit eece8375af5ea72e76bb4053ec4bbaf6ce337adf[m
+Merge: 779b154 a58fb2b
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Sep 16 13:58:38 2020 -0300
+
+    Teste2
+    
+    Merge branch 'master' of https://github.com/fsbmat-ufv/LeidenRanking
+    
+    # Conflicts:
+    #       Leiden.R
+    #       shiny/global.R
+    #       shiny/server.R
+    #       shiny/ui.R
+
+[33mcommit 779b1548d7307bd269d8232ebc5ee73ad6e892b0[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Sep 16 13:58:00 2020 -0300
+
+    Teste
+
+[33mcommit 611da31d81c98be0f2c156c8115444f6b75b4d07[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Sep 16 13:55:56 2020 -0300
+
+    Arquivo2020
+
+[33mcommit a58fb2b7afef1b397e61feb7d36c737bca29faeb[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Wed Sep 16 12:35:11 2020 -0300
+
+    updates
+
+[33mcommit 6ec4e601e154981c8af7849d0b9c036d56f85295[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Mon Sep 7 12:29:52 2020 -0300
+
+    updates
+
+[33mcommit 58ce7a22c0dc31140a041668f6ea6ebd99c7196c[m
+Merge: f813e47 f40774a
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Sat Sep 5 15:17:56 2020 -0300
+
+    update
+    
+    Merge branch 'master' of github.com:fsbmat-ufv/LeidenRanking into master
+    
+    # Conflicts:
+    #       shiny/ui.R
+
+[33mcommit f813e47eb3db21836853c89f7d25d32925a21f1d[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 4 12:28:56 2020 -0300
+
+    updates
+
+[33mcommit f40774a357c9cdd3b2e59c8fec9e61cd66cd5a9a[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Sep 4 12:28:56 2020 -0300
+
+    updates
+
+[33mcommit cd3f7f36317d5b7c44dc71309ef1ba7fb2e1ab2e[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Mon Aug 31 12:22:38 2020 -0300
+
+    updates
+
+[33mcommit ea1c8a3c29cd85faea9b49d23b5f4345c7cfaf7f[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 27 11:40:39 2020 -0300
+
+    boxplot publicações
+
+[33mcommit b0f9565330566553b02c5a3b0f706845c0547167[m
+Merge: dacdf14 1a6fb10
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 27 10:27:31 2020 -0300
+
+    Merge branch 'master' of github.com:fsbmat-ufv/LeidenRanking into master
+
+[33mcommit dacdf1486c5b7cc4041cbf4ad1f0fc757f716e6d[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 27 10:27:18 2020 -0300
+
+    update
+
+[33mcommit 1a6fb10fbc4df0b2e3148aaf4571917f8ee60df4[m
+Merge: 6de67ce ff80e6b
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 27 10:24:32 2020 -0300
+
+    Merge pull request #1 from isabellazramos/master
+    
+    updates
+
+[33mcommit 6de67ceab1753471029d9f729fc7e9e7a91c2305[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Wed Aug 26 11:58:08 2020 -0300
+
+    gráfico de pizza das publicações brasileiras
+
+[33mcommit 9f0963f7fb314bd469d703a94ceaefe4cdd44399[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Mon Aug 24 13:47:43 2020 -0300
+
+    adicionando csv de latlong das universidades brasileiras
+
+[33mcommit 8c9a6e7e25236209403bb1d01462b4efdff4a512[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Wed Aug 19 11:15:21 2020 -0300
+
+    updating gender indicators
+
+[33mcommit 8d3cae1997d20daf263ed0c105534ac4113cb566[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Mon Aug 17 13:32:45 2020 -0300
+
+    updating open access indicators
+
+[33mcommit 90eef9343a7d27f7138a00a288f77c886e5a0e72[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Mon Aug 17 12:22:41 2020 -0300
+
+    updating open access indicators
+
+[33mcommit c574a97c26a0f6fc9aaa876f5f26aef55406c091[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Fri Aug 14 15:58:48 2020 -0300
+
+    updating collaboration indicators
+
+[33mcommit ff80e6bef39bdb6fd90e794bb7c3b45485a49368[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 13 13:55:12 2020 -0300
+
+    Update README.md
+
+[33mcommit 3cde17afa0b5368ef86b9ec4339b9663f064e737[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 13 13:54:33 2020 -0300
+
+    Update README.md
+
+[33mcommit de5ccad636b7d13c474ddab869edcc676e2b2bb7[m
+Merge: 4fc7d95 24c7fc8
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 13 13:53:40 2020 -0300
+
+    Merge pull request #1 from fsbmat-ufv/master
+    
+    updating version
+
+[33mcommit 24c7fc817cc143205c50ab22dab0571aba9c02b1[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Thu Aug 13 12:20:37 2020 -0300
+
+    updating scientific impact indicators
+
+[33mcommit bdd74e9343832f0951eaac67346105f1d2a1ec44[m
+Author: Isabella Ramos <isabellamenezesramos@outlook.com>
+Date:   Wed Aug 12 18:03:14 2020 -0300
+
+    updating scientific impact indicators
+
+[33mcommit 2e2db9b753d159f8801917881f52c3b022926bb2[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Aug 12 13:46:18 2020 -0300
+
+    1reunião2020
+
+[33mcommit 55ed19b7ba5e03bc47193a6c8e6eb56ddf328b53[m
+Merge: c55df6b 7bd2990
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Aug 12 13:03:26 2020 -0300
+
+    Merge branch 'master' of github.com:fsbmat-ufv/LeidenRanking
+
+[33mcommit c55df6b159e157e2dde9f497a9cdc5f4bea89965[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed Aug 12 13:03:01 2020 -0300
+
+    Clear Rproj
+
+[33mcommit 7bd299026b27a7099618b6519ff97e0740e25287[m
+Author: Fernando de Souza Bastos <53442906+fsbmat-ufv@users.noreply.github.com>
+Date:   Wed Aug 12 13:01:41 2020 -0300
+
+    Clear
+
+[33mcommit 5bb64b649db8e02ef58622c98ee444e304541031[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Tue Aug 11 13:04:57 2020 -0300
+
+    shiny
+
+[33mcommit 4fc7d95894323c39c56dea463d3b4bc2aa3eb57e[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Fri Jul 24 14:55:07 2020 -0300
+
+    Add plots
+
+[33mcommit 8f2e1166e20aa86cfda79be4b1e06740059bfc12[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed May 13 23:10:48 2020 -0300
+
+    ignore
+
+[33mcommit 39c6e6cc028bf49215385634649552de07552065[m
+Author: fsbmat <fsbmat@gmail.com>
+Date:   Wed May 13 23:08:24 2020 -0300
+
+    Arquivos Leiden
+
+[33mcommit ad4620c1b64e700a216064e7771c195a4ffb61c2[m
+Author: Fernando de Souza Bastos <53442906+fsbmat-ufv@users.noreply.github.com>
+Date:   Wed May 13 10:23:07 2020 -0300
+
+    Initial commit

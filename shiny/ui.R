@@ -1119,6 +1119,7 @@ shinyUI(fluidPage(
                                                                                                                não são classificadas como organizações industriais. ")),
                                             column(9,
                                                    plotlyOutput("plot21")))),
+<<<<<<< HEAD
                           tabPanel("PP_industry_collab",
                                    
                                    fluidRow(column(3,
@@ -1164,6 +1165,8 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                             column(9,
                                                    plotlyOutput("plot37")))),
+=======
+>>>>>>> parent of a58fb2b... updates
                           tabPanel("P_short_dist_collab",
                                    fluidRow(column(3,
                                                    selectInput("options17", 
@@ -1219,6 +1222,7 @@ shinyUI(fluidPage(
                                                                selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
                                             column(9,
                                                    plotlyOutput("plot22")))),
+<<<<<<< HEAD
                           tabPanel("PP_short_dist_collab",
                                    fluidRow(column(3,
                                                    selectInput("options33", 
@@ -1250,6 +1254,8 @@ shinyUI(fluidPage(
                                                                selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
                                             column(9,
                                                    plotlyOutput("plot38")))),
+=======
+>>>>>>> parent of a58fb2b... updates
                           tabPanel("P_long_dist_collab",
                                    fluidRow(column(3,
                                                    selectInput("options18", 
@@ -1305,37 +1311,7 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                                                selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
                                             column(9,
-                                                   plotlyOutput("plot23")))),
-                          tabPanel("PP_long_dist_collab",
-                                   fluidRow(column(3,
-                                                   selectInput("options34", 
-                                                               strong("Escolha uma opção:"), 
-                                                               choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
-                                                                         "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
-                                                                         "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
-                                                                         "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
-                                                                         "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
-                                                                         "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
-                                                                         "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
-                                                                         "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
-                                                                         "UEM" = "STATE UNIVERSITY OF MARINGA",               
-                                                                         "UNB" = "UNIVERSIDADE DE BRASILIA",                 
-                                                                         "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
-                                                                         "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
-                                                                         "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
-                                                                         "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
-                                                                         "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
-                                                                         "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
-                                                                         "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
-                                                                         "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
-                                                                         "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
-                                                                         "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
-                                                                         "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
-                                                                         "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
-                                                                         "USP" = "UNIVERSITY OF SAO PAULO"),
-                                                               selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
-                                            column(9,
-                                                   plotlyOutput("plot39"))))
+                                                   plotlyOutput("plot23"))))
                           
             )#tabpanel
             ),#tabset panel
@@ -1401,38 +1377,6 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                          column(9,
                                                 plotlyOutput("plot24")))),
-                       tabPanel("PP_OA",
-                                fluidRow(column(3,
-                                                
-                                                selectInput("options35", 
-                                                            strong("Escolha uma opção:"), 
-                                                            choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
-                                                                      "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
-                                                                      "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
-                                                                      "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
-                                                                      "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
-                                                                      "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
-                                                                      "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
-                                                                      "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
-                                                                      "UEM" = "STATE UNIVERSITY OF MARINGA",               
-                                                                      "UNB" = "UNIVERSIDADE DE BRASILIA",                 
-                                                                      "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
-                                                                      "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
-                                                                      "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
-                                                                      "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
-                                                                      "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
-                                                                      "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
-                                                                      "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
-                                                                      "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
-                                                                      "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
-                                                                      "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
-                                                                      "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
-                                                                      "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
-                                                                      "USP" = "UNIVERSITY OF SAO PAULO"),
-                                                            selected = "UNIVERSIDADE FEDERAL DE VICOSA"),
-                                                p(style="text-align: justify;",strong("Observação:"),"Os diferentes tipos de acesso aberto estão parcialmente sobrepostos. Uma publicação pode ser de acesso aberto verde e de ouro, híbrido ou bronze. No cálculo dos indicadores P (OA) e PP (OA), uma publicação é considerada acesso aberto se for acesso aberto verde e / ou acesso aberto ouro, híbrido ou bronze.")),
-                                         column(9,
-                                                plotlyOutput("plot40")))),
                        tabPanel("P_gold_OA",
                                 fluidRow(column(3,
                                                 
@@ -1493,39 +1437,6 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                          column(9,
                                                 plotlyOutput("plot25")))),
-                       tabPanel("PP_gold_OA",
-                                fluidRow(column(3,
-                                                
-                                                selectInput("options36", 
-                                                            strong("Escolha uma opção:"), 
-                                                            choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
-                                                                      "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
-                                                                      "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
-                                                                      "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
-                                                                      "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
-                                                                      "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
-                                                                      "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
-                                                                      "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
-                                                                      "UEM" = "STATE UNIVERSITY OF MARINGA",               
-                                                                      "UNB" = "UNIVERSIDADE DE BRASILIA",                 
-                                                                      "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
-                                                                      "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
-                                                                      "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
-                                                                      "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
-                                                                      "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
-                                                                      "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
-                                                                      "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
-                                                                      "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
-                                                                      "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
-                                                                      "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
-                                                                      "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
-                                                                      "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
-                                                                      "USP" = "UNIVERSITY OF SAO PAULO"),
-                                                            selected = "UNIVERSIDADE FEDERAL DE VICOSA"),
-                                                p(style="text-align: justify;","As publicações Gold de acesso aberto são publicações em um diário de acesso aberto"),
-                                                p(style="text-align: justify;",strong("Observação:"),"Os diferentes tipos de acesso aberto estão parcialmente sobrepostos. Uma publicação pode ser de acesso aberto verde e de ouro, híbrido ou bronze. No cálculo dos indicadores P (OA) e PP (OA), uma publicação é considerada acesso aberto se for acesso aberto verde e / ou acesso aberto ouro, híbrido ou bronze.")),
-                                         column(9,
-                                                plotlyOutput("plot41")))),
                        tabPanel("P_hybrid_OA",
                                 fluidRow(column(3,
                                                 
@@ -1585,6 +1496,7 @@ shinyUI(fluidPage(
                                                 p(style="text-align: justify;",strong("Observação:"),"Os diferentes tipos de acesso aberto estão parcialmente sobrepostos. Uma publicação pode ser de acesso aberto verde e de ouro, híbrido ou bronze. No cálculo dos indicadores P (OA) e PP (OA), uma publicação é considerada acesso aberto se for acesso aberto verde e / ou acesso aberto ouro, híbrido ou bronze.")),
                                          column(9,
                                                 plotlyOutput("plot26")))),
+<<<<<<< HEAD
                        tabPanel("PP_hybrid_OA",
                                 fluidRow(column(3,
                                                 
@@ -1619,6 +1531,8 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                          column(9,
                                                 plotlyOutput("plot42")))),
+=======
+>>>>>>> parent of a58fb2b... updates
                        tabPanel("P_bronze_OA",
                                 fluidRow(column(3,
                                                 
@@ -1678,6 +1592,7 @@ shinyUI(fluidPage(
                                                 p(style="text-align: justify;",strong("Observação:"),"Os diferentes tipos de acesso aberto estão parcialmente sobrepostos. Uma publicação pode ser de acesso aberto verde e de ouro, híbrido ou bronze. No cálculo dos indicadores P (OA) e PP (OA), uma publicação é considerada acesso aberto se for acesso aberto verde e / ou acesso aberto ouro, híbrido ou bronze.")),
                                          column(9,
                                                 plotlyOutput("plot27")))),
+<<<<<<< HEAD
                        tabPanel("PP_bronze_OA",
                                 fluidRow(column(3,
                                                 
@@ -1712,6 +1627,8 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                          column(9,
                                                 plotlyOutput("plot43")))),
+=======
+>>>>>>> parent of a58fb2b... updates
                        tabPanel("P_green_OA",
                                 fluidRow(column(3,
                                                 
@@ -1772,39 +1689,6 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                          column(9,
                                                 plotlyOutput("plot28")))),
-                       tabPanel("PP_green_OA",
-                                fluidRow(column(3,
-                                                
-                                                selectInput("options39", 
-                                                            strong("Escolha uma opção:"), 
-                                                            choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
-                                                                      "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
-                                                                      "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
-                                                                      "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
-                                                                      "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
-                                                                      "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
-                                                                      "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
-                                                                      "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
-                                                                      "UEM" = "STATE UNIVERSITY OF MARINGA",               
-                                                                      "UNB" = "UNIVERSIDADE DE BRASILIA",                 
-                                                                      "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
-                                                                      "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
-                                                                      "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
-                                                                      "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
-                                                                      "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
-                                                                      "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
-                                                                      "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
-                                                                      "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
-                                                                      "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
-                                                                      "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
-                                                                      "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
-                                                                      "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
-                                                                      "USP" = "UNIVERSITY OF SAO PAULO"),
-                                                            selected = "UNIVERSIDADE FEDERAL DE VICOSA"),
-                                                p(style="text-align: justify;","Publicações verdes de acesso aberto são publicações em um diário que também estão disponíveis em um repositório de acesso aberto."),
-                                                p(style="text-align: justify;",strong("Observação:"),"Os diferentes tipos de acesso aberto estão parcialmente sobrepostos. Uma publicação pode ser de acesso aberto verde e de ouro, híbrido ou bronze. No cálculo dos indicadores P (OA) e PP (OA), uma publicação é considerada acesso aberto se for acesso aberto verde e / ou acesso aberto ouro, híbrido ou bronze.")),
-                                         column(9,
-                                                plotlyOutput("plot44")))),
                        tabPanel("P_OA_unknown",
                                 fluidRow(column(3,
                                                 
@@ -1862,6 +1746,7 @@ shinyUI(fluidPage(
                                                             selected = "UNIVERSIDADE FEDERAL DE VICOSA"),p("Essas publicações normalmente não possuem um DOI no banco de dados Web of Science."),
                                                 p(style="text-align: justify;",strong("Observação:"),"Os diferentes tipos de acesso aberto estão parcialmente sobrepostos. Uma publicação pode ser de acesso aberto verde e de ouro, híbrido ou bronze. No cálculo dos indicadores P (OA) e PP (OA), uma publicação é considerada acesso aberto se for acesso aberto verde e / ou acesso aberto ouro, híbrido ou bronze.")),
                                          column(9,
+<<<<<<< HEAD
                                                 plotlyOutput("plot29")))),
                        tabPanel("PP_OA_unknown",
                                 fluidRow(column(3,
@@ -1896,6 +1781,9 @@ shinyUI(fluidPage(
 >>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
                                          column(9,
                                                 plotlyOutput("plot45"))))
+=======
+                                                plotlyOutput("plot29"))))
+>>>>>>> parent of a58fb2b... updates
                                 )),
             tabPanel("Indicadores de gênero",
                      tabsetPanel(tabPanel("gender_A",

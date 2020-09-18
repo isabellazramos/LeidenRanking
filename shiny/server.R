@@ -380,22 +380,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot37 <- renderPlotly(
-      {
-         dat37 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options32,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot37 <- ggplot(dat37,aes(Field, PP_industry_collab, fill=Field, label= round(PP_industry_collab, digits = 2), 
-                                    text=paste("PP_industry_collab :",PP_industry_collab, "<br>", 
-                                               "Período:", Period))) +
-            geom_col(aes(Field, PP_industry_collab), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_industry_collab")+ ggtitle("A proporção de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais") + 
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat37$PP_industry_collab)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot37, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot22 <- renderPlotly(
       {
         dat22 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -409,22 +393,6 @@ shinyServer(function(input, output, session) {
             geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+20)) +
             theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
          ggplotly(plot22, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
-   output$plot38 <- renderPlotly(
-      {
-         dat38 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options33,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot38 <- ggplot(dat38, aes(Field, PP_short_dist_collab, fill=Field, label= round(PP_short_dist_collab, digits = 2), 
-                                     text=paste("PP_short_dist_collab :",PP_short_dist_collab, "<br>", 
-                                                "Período:", Period))) +
-            geom_col(aes(Field, PP_short_dist_collab), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_short_dist_collab")+ ggtitle("A proporção de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.") + 
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat38$PP_short_dist_collab)+20)) +
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot38, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          
       }
    )
@@ -444,22 +412,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot39 <- renderPlotly(
-      {
-         dat39 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options34,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot39 <- ggplot(dat39,aes(Field, PP_long_dist_collab, fill=Field, label= round(PP_long_dist_collab, digits = 2), 
-                                    text=paste("PP_long_dist_collab :",PP_long_dist_collab, "<br>", 
-                                               "Período:", Period))) +
-            geom_col(aes(Field, PP_long_dist_collab), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_long_dist_collab") + ggtitle("A proporção de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat39$PP_long_dist_collab)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot39, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot24 <- renderPlotly(
       {
          dat24 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -476,22 +428,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot40 <- renderPlotly(
-      {
-         dat40 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options35,
-                   Period=="2014–2017", Frac_counting ==  "0") 
-         plot40 <- ggplot(dat40,aes(Field, PP_OA, fill=Field, label= round(PP_OA, digits = 2), 
-                                    text=paste("PP_OA :",PP_OA, "<br>", 
-                                               "Período:", Period))) +
-            geom_col(aes(Field, PP_OA), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_OA") + ggtitle("A proporção de publicações de acesso aberto de uma universidade.")+
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat40$PP_OA)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot40, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot25 <- renderPlotly(
       {
          dat25 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -505,38 +441,6 @@ shinyServer(function(input, output, session) {
             geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat25$P_gold_OA)+20))+
             theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
          ggplotly(plot25, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
-   output$plot41 <- renderPlotly(
-      {
-         dat41 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options36,
-                   Period=="2014–2017", Frac_counting ==  "0")
-         plot41 <-  ggplot(dat41,aes(Field, PP_gold_OA, fill=Field, label= round(PP_gold_OA, digits = 2), 
-                                     text=paste("PP_gold_OA :",PP_gold_OA, "<br>", 
-                                                "Período:", Period))) +
-            geom_col(aes(Field, PP_gold_OA), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_gold_OA")+ ggtitle("O número de ouro em publicações de acesso aberto de uma universidade") + 
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat41$PP_gold_OA)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot41, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
-   output$plot42 <- renderPlotly(
-      {
-         dat42 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options37,
-                   Period=="2014–2017", Frac_counting ==  "0")
-         plot42 <- ggplot(dat42, aes(Field, PP_hybrid_OA, fill=Field, label= round(PP_hybrid_OA, digits = 2), 
-                                     text=paste("PP_hybrid_OA :",PP_hybrid_OA, "<br>", 
-                                                "Período:", Period))) +
-            geom_col(aes(Field, PP_hybrid_OA), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_hybrid_OA") + ggtitle("A proporção de publicações híbridas de acesso aberto de uma universidade") +
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat42$PP_hybrid_OA)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot42, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          
       }
    )
@@ -572,38 +476,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot43 <- renderPlotly(
-      {
-         dat43 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options38,
-                   Period=="2014–2017", Frac_counting == "0") 
-         plot43 <- ggplot(dat43,aes(Field, PP_bronze_OA, fill=Field, label= round(PP_bronze_OA, digits = 2), 
-                                    text=paste("PP_bronze_OA :",PP_bronze_OA, "<br>", 
-                                               "Período:", Period))) +
-            geom_col(aes(Field, PP_bronze_OA), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_bronze_OA") + ggtitle("A proporção de publicações de acesso aberto em bronze de uma universidade")+
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat43$PP_bronze_OA)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot43, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
-   output$plot44 <- renderPlotly(
-      {
-         dat44<-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options39,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot44 <-  ggplot(dat44,aes(Field, PP_green_OA, fill=Field, label= round(PP_green_OA, digits = 2), 
-                                     text=paste("PP_green_OA :",PP_green_OA, "<br>", 
-                                                "Período:", Period))) +
-            geom_col(aes(Field, PP_green_OA), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_green_OA") + ggtitle("A proporção de publicações verdes de acesso aberto de uma universidade")+
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat44$PP_green_OA)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot44, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot28 <- renderPlotly(
       {
          dat28 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -636,22 +508,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot45 <- renderPlotly(
-      {
-         dat45 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options40,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot45 <-  ggplot(dat45,aes(Field, PP_OA_unknown, fill=Field, label= round(PP_OA_unknown, digits = 2), 
-                                     text=paste("PP_OA_unknown :",PP_OA_unknown, "<br>", 
-                                                "Período:", Period))) +
-            geom_col(aes(Field, PP_OA_unknown), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PP_OA_unknown")+ ggtitle("A proporção de publicações de uma universidade para as quais o status de acesso aberto é desconhecido") + 
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) +theme_bw()+ylim(c(0,max(dat45$PP_OA_unknown)+20))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot45, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot30 <- renderPlotly(
       {
          dat30 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -668,7 +524,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   
    output$plot31 <- renderPlotly(
       {
          dat31 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -701,22 +556,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot46 <- renderPlotly(
-      {
-         dat46 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options41,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot46 <-ggplot(dat46, aes(Field, PA_gender_unknown, fill=Field, label= round(PA_gender_unknown, digits = 2), 
-                                    text=paste("PA_gender_unknown :",PA_gender_unknown, "<br>", 
-                                               "Período:", Period))) +
-            geom_col(aes(Field, PA_gender_unknown), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PA_gender_unknown") + ggtitle("A proporção de autorias de uma universidade para as quais o gênero é desconhecido")+
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat46$PA_gender_unknown)+30))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot46, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot33 <- renderPlotly(
       {
          dat33 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -733,22 +572,6 @@ shinyServer(function(input, output, session) {
          
       }
    )
-   output$plot47 <- renderPlotly(
-      {
-         dat47 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options42,
-                   Period=="2014–2017", Frac_counting == "0") 
-         plot47 <- ggplot(dat47,aes(Field, PA_M, fill=Field, label= round(PA_M, digits = 2), 
-                                    text=paste("PA_M :",A_M, "<br>", 
-                                               "Período:", Period))) +
-            geom_col(aes(Field, PA_M), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PA_M")+ ggtitle("A proporção de autorias masculinas de uma universidade") + 
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat47$PA_M)+150))+
-            theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-         ggplotly(plot47, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
    output$plot34 <- renderPlotly(
       {
          dat34 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -762,22 +585,6 @@ shinyServer(function(input, output, session) {
             geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat34$A_F)+70))+
             theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
          ggplotly(plot34, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-         
-      }
-   )
-   output$plot48 <- renderPlotly(
-      {
-         dat48 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options43,
-                   Period=="2014–2017", Frac_counting == "0")
-         plot48 <-  ggplot(dat48,aes(Field, PA_F, fill=Field, label= round(PA_F, digits = 2), 
-                                     text=paste("PA_F :",PA_F, "<br>", 
-                                                "Período:", Period))) +
-            geom_col(aes(Field, PA_F), show.legend = FALSE) + 
-            xlab("Área Ciêntífica (2014-2017)") + ylab("PA_F") + ggtitle("A proporção de autorias femininas de uma universidade")+
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat48$PA_F)+70))+
-            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
-         ggplotly(plot48, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          
       }
    )
