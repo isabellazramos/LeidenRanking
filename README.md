@@ -7,9 +7,6 @@ O Ranking CWTS Leiden é um ranking anual global da universidade baseado exclusi
 
 Utilizamos para as análises os últimos resultados publicados pelo Leiden Ranking, em 2020, mas através da nossa aplicação, a cada atualização dos dados publicados por eles, você pode atualizar de maneira rápida, sem a necessidade de fazer modificações no código, apenas tratando o csv para o formato de dados do R (Rds).
 
-
-O Ranking CWTS Leiden é um ranking anual global da universidade baseado exclusivamente em indicadores bibliométricos, ele oferece informações importantes sobre o desempenho científico de mais de 1000 grandes universidades em todo o mundo através de diversos indicadores.
-
 ## Tecnologias
 
 ## Como Usar?
