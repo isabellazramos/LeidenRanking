@@ -38,7 +38,6 @@ library("htmlTable")
 # data$University <- str_to_upper(data$University)
 # data$Country  <- str_to_upper(data$Country)
 # data$Field   <- str_to_upper(data$Field)
-<<<<<<< HEAD
 # data$impact_P <- if_else(data$Frac_counting=="0",round(data$impact_P),data$impact_P) 
 # data$P_top1 <- if_else(data$Frac_counting=="0",round(data$P_top1),data$P_top1) 
 # data$P_top5 <- if_else(data$Frac_counting=="0",round(data$P_top5),data$P_top5) 
@@ -58,15 +57,20 @@ library("htmlTable")
 # data <- modify_if(data, ~is.numeric(.), ~round(., 2))
 # saveRDS(data, file="LeidenRanking2020.Rds")
 data <- readRDS("LeidenRanking2020.Rds")
-=======
+
 # 
 #saveRDS(data, file="LeidenRanking.Rds")
 data <- readRDS("LeidenRanking.Rds")
->>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
 data2 <- read.csv("LatLongBrazilianUniversities.csv")
 #data <- left_join(data,data2,by = "University")
-brazil <- data %>% filter(Country=="BRAZIL")
+
+brazil <- data %>% filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL SCIENCES",Per_End == 2019 | Per_End == 2018 | Per_End == 2017 | Per_End == 2016 )
+brazil <- brazil[order(brazil$University),]
+brazil <- brazil %>% select(University, Per_End,impact_P,collab_P,P_top10,PP_top10,P_industry_collab)
+
 unique(brazil$University)
+brazil2 <- brazil %>% filter(Frac_counting == 0,Field == "ALL SCIENCES")
+
 
 Nruniversidades <- data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
 df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)

@@ -27,7 +27,9 @@ shinyUI(fluidPage(
                                               leaflet() %>% 
                                               addTiles() %>% 
                                               addMarkers(lng = data2$Longitude, lat = data2$Latitude, popup = data2$Sigla,
-                                                         clusterOptions = markerClusterOptions(maxClusterRadius = 15))
+                                                         clusterOptions = markerClusterOptions(maxClusterRadius = 15)),
+                                            tableOutput('tableBrazil')
+                                            
                                      )),
                             ##
                             tabPanel("Banco de Dados",

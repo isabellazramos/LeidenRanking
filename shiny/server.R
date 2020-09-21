@@ -582,4 +582,8 @@ shinyServer(function(input, output, session) {
          
       }
    )
+   
+   output$tableBrazil <- renderTable({ head( brazil, n = -1 )},  
+                             bordered = TRUE)  
+   
 })
