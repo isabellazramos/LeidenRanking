@@ -53,7 +53,7 @@ dred = 'rgb(100,30,30)'
 dados <- readRDS("LeidenRanking2020.Rds")
 
 #dados <- readRDS("LeidenRanking.Rds")
-data2 <- read.csv("LatLongBrazilianUniversities.csv")
+data2 <- read.csv("LatLongBrazilianUniversities2.csv")
 
 brazil <- dados %>% filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL SCIENCES",Per_End == 2019 | Per_End == 2018 | Per_End == 2017 | Per_End == 2016, 
                            University == "UNIVERSITY OF SAO PAULO" |University == "UNIVERSIDADE ESTADUAL PAULISTA"|University == "UNIVERSITY OF CAMPINAS"| University == "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO" 
