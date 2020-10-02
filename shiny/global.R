@@ -49,11 +49,17 @@ dred = 'rgb(100,30,30)'
 
 ##############################################################################
 ## DATA SOURCES
-<<<<<<< HEAD
+
 dados <- readRDS("LeidenRanking2020.Rds")
-=======
-dados <- readRDS("LeidenRanking.Rds")
-data2 <- read.csv("LatLongBrazilianUniversities.csv")
->>>>>>> a58fb2b7afef1b397e61feb7d36c737bca29faeb
+
+#dados <- readRDS("LeidenRanking.Rds")
+data2 <- read.csv("LatLongBrazilianUniversities2.csv")
+
+brazil <- dados %>% filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL SCIENCES",Per_End == 2019 | Per_End == 2018 | Per_End == 2017 | Per_End == 2016, 
+                           University == "UNIVERSITY OF SAO PAULO" |University == "UNIVERSIDADE ESTADUAL PAULISTA"|University == "UNIVERSITY OF CAMPINAS"| University == "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO" 
+                           | University == "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL"| University == "UNIVERSIDADE FEDERAL DE MINAS GERAIS")
+brazil <- brazil[order(brazil$University),]
+brazil <- brazil %>% select(University, Per_End,impact_P,collab_P,P_top10,PP_top10,P_industry_collab)
+
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")
