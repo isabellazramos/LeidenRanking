@@ -22,20 +22,22 @@ shinyUI(fluidPage(
                                       h4(style = "text-align: justify", "O nosso foco é fazer análises focando as universidades do Brasil
                                          que participam do ranking, que ao todo são 23 universidades."),
                                               )),
-                                     column(12,
-                                            data2 %>% 
-                                              leaflet() %>% 
-                                              addTiles() %>% 
-                                              addMarkers(lng = data2$Longitude, lat = data2$Latitude, popup = data2$Sigla,
-                                                         clusterOptions = markerClusterOptions(maxClusterRadius = 15)),
-                                            tableOutput('tableBrazil')
-                                            
-                                     )),
+                                     ),
                             ##
                             tabPanel("Banco de Dados",
                                      fluidRow(
                                        column(12,
-                                              DT::dataTableOutput("table1"))))
+                                              DT::dataTableOutput("table1")))),
+                        tabPanel("Brasil",
+                                 fluidRow(
+                                   column(12,
+                                          data2 %>% 
+                                            leaflet() %>% 
+                                            addTiles() %>% 
+                                            addMarkers(lng = data2$Longitude, lat = data2$Latitude, popup = data2$Sigla,
+                                                       clusterOptions = markerClusterOptions(maxClusterRadius = 15)),
+                                          DT::dataTableOutput('tableBrazil')
+                                 )))
                             
                         )# barra de navegacao interna
                     ),# barra de navegacao superior 
