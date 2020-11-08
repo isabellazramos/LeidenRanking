@@ -287,7 +287,7 @@ shinyServer(function(input, output, session) {
                           text=paste("MNCS :",MNCS, "<br>", 
                                      "Período:", Period))) +
                geom_col(show.legend = FALSE) + 
-              xlab("Área Científica (2015–2018)") + ylab("MNCS") + ggtitle("O número médio de citações das publicações de uma universidade, normalizadas por campo e ano de publicação")+
+              xlab("Área Científica (2015–2018)") + ylab("MNCS") + ggtitle("O número médio de citações das publicações de uma universidade por campo e ano de publicação")+
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat18$MNCS)+0.05))
                #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
            ggplotly(plot18, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
