@@ -61,5 +61,16 @@ brazil <- dados %>% filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL 
 brazil <- brazil[order(brazil$University),]
 brazil <- brazil %>% select(University, Per_End,impact_P,collab_P,P_top10,PP_top10,P_industry_collab)
 
+Nruniversidades <- data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
+df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)
+str(Nruniversidades)
+Nruniversidades$Country <- as.factor(Nruniversidades$Country)
+Nruniversidades$latitude <- as.numeric(Nruniversidades$latitude) 
+Nruniversidades$longitude <- as.numeric(Nruniversidades$longitude)
+Nruniversidades$NrUniv <- as.numeric(Nruniversidades$NrUniv)
+
+brazil2 <- data %>% filter(Country=="BRAZIL")
+
+
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")

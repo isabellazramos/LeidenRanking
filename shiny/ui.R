@@ -10,7 +10,7 @@
 # Define UI for application
 library(shinythemes)
 shinyUI(fluidPage(theme = shinytheme("sandstone"),
-    navbarPage(title="Leiden Ranking",
+    navbarPage(title="CWTS Leiden Ranking",
                tabPanel("Descrição",
                         tabsetPanel(
                             tabPanel("Sobre o Dashboard",
@@ -34,11 +34,17 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                        os dados fornecidos pelo Ranking CWTS Leiden, um ranking anual global de universidades de todo 
                                        o mundo, baseado exclusivamente em indicadores bibliométricos. O Ranking fornece resultados sobre 
                                         indicadores diversos, e seus resultados podem ser acessados pelo menu do dashboard."),
+                                      h4(style="text-align: justify;","Dentre os indicadores pertencentes ao Leiden Ranking, temos duas variantes principais: os indicadores dependentes de tamanho e os independentes de tamanho."),
+                                      h4(style="text-align: justify;","A partir dos indicadores acima, temos:"),
+                                      h4(style="text-align: justify;"," - Indicadores de impacto científico;"),
+                                      h4(style="text-align: justify;"," - Indicadores de colaboração;"),
+                                      h4(style="text-align: justify;"," - Indicadores de acesso aberto;"),
+                                      h4(style="text-align: justify;"," - Indicadores de gênero."),
                                       h4(style="text-align: justify;", "O diferencial dos demais rankings é que o CWTS Leiden Ranking
                                          não gera apenas um único ranking com as melhores universidades,  ele disponibiliza uma série de 
                                          indicadores para que você possa analisar e chegar na sua conclusão sobre quais são as melhores."),
                                       h4(style = "text-align: justify", "O nosso foco é fazer análises focando as universidades do Brasil
-                                         que participam do ranking, que ao todo são 23 universidades. Nossas análises gráficas, podem ser
+                                         que participam do ranking, que ao todo são 30 universidades. Nossas análises gráficas, podem ser
                                          acessadas pelo menu superior."),
                                               )),
                                      ),
@@ -46,6 +52,15 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                             tabPanel("Banco de Dados",
                                      fluidRow(
                                        column(12,
+                                              h1("Mundo"),
+                                              br(),
+                                              Nruniversidades %>% 
+                                                leaflet() %>% 
+                                                addTiles() %>% 
+                                                addCircleMarkers(lng = ~longitude, lat = ~latitude, label = ~as.character(NrUniv),
+                                                                 labelOptions = labelOptions(noHide = T, direction = 'center', textOnly = T), 
+                                                                 color = ~as.factor(NrUniv)),br(),
+                                              p("Para acessar todos os dados das universidades do mundo todo presentes no ranking:"),
                                               DT::dataTableOutput("table1")))),
                         tabPanel("Brasil",
                                  fluidRow(
@@ -61,7 +76,9 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                           p(style = "text-align: justify","A baixo, separamos as universidades brasileiras que tiveram
                                             o maior destaque no último ranqueamento do CWRS Leiden, pelo indicador de número total
                                             de publicações."),
-                                          DT::dataTableOutput('tableBrazil')
+                                          DT::dataTableOutput('tableBrazil'),br(),
+                                          p("Para acessar todas as universidades brasileiras presentes no CWTS Leiden Ranking:"),
+                                          DT::dataTableOutput("table2")
                                  )))
                             
                         )# barra de navegacao interna
@@ -72,6 +89,41 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                tabPanel("Indicadores de Impacto Científico",
                         tabsetPanel(
                           ##
+                          tabPanel("impact_P",
+                                   fluidRow(column(3,
+                                                   selectInput("frac01",
+                                                               strong("Escolha uma opção:"),
+                                                               choices = c("Contagem fracionada" = "1",
+                                                                           "Contagem não fracionada" = "0")),
+                                                   selectInput("options01", 
+                                                               strong("Escolha uma opção:"), 
+                                                               choices=c("UFPB" = "FEDERAL UNIVERSITY OF PARAIBA",
+                                                                         "UFPE" = "FEDERAL UNIVERSITY OF PERNAMBUCO",        
+                                                                         "UFRN" = "FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE" ,
+                                                                         "UFRGS" = "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL",  
+                                                                         "UFSM" = "FEDERAL UNIVERSITY OF SANTA MARIA",
+                                                                         "UFSCAR" = "FEDERAL UNIVERSITY OF SAO CARLOS",         
+                                                                         "UFU" = "FEDERAL UNIVERSITY OF UBERLANDIA",
+                                                                         "UERJ" = "RIO DE JANEIRO STATE UNIVERSITY",          
+                                                                         "UEM" = "STATE UNIVERSITY OF MARINGA",               
+                                                                         "UNB" = "UNIVERSIDADE DE BRASILIA",                 
+                                                                         "UNESP" = "UNIVERSIDADE ESTADUAL PAULISTA",
+                                                                         "UFBA" = "UNIVERSIDADE FEDERAL DA BAHIA",            
+                                                                         "UFG" = "UNIVERSIDADE FEDERAL DE GOIAS",
+                                                                         "UFMG" = "UNIVERSIDADE FEDERAL DE MINAS GERAIS",     
+                                                                         "UFSC" = "UNIVERSIDADE FEDERAL DE SANTA CATARINA",
+                                                                         "UNIFESP" = "UNIVERSIDADE FEDERAL DE SAO PAULO",   
+                                                                         "UFV" = "UNIVERSIDADE FEDERAL DE VICOSA",
+                                                                         "UFC" = "UNIVERSIDADE FEDERAL DO CEARA",            
+                                                                         "UFPR" = "UNIVERSIDADE FEDERAL DO PARANA",
+                                                                         "UFRJ" = "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO",   
+                                                                         "UFF" = "UNIVERSIDADE FEDERAL FLUMINENSE",
+                                                                         "UNICAMP" = "UNIVERSITY OF CAMPINAS",                   
+                                                                         "USP" = "UNIVERSITY OF SAO PAULO"),
+                                                               selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
+                                                   column(9,
+                                                          plotlyOutput("plot01"))
+                                                   )),
                           tabPanel("P_Top1",
                                    fluidRow(column(3,
                                                    selectInput("frac",

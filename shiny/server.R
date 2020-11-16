@@ -21,6 +21,14 @@ shinyServer(function(input, output, session) {
                           buttons = c('pageLength','copy', 'csv', 'excel', 'pdf', 'print')
                       ))
     })
+    output$table2 <- DT::renderDataTable({
+       DT::datatable(brazil2,  
+                     class = 'cell-border stripe',
+                     extensions = 'Buttons', options = list(
+                        dom = 'Bfrtip',
+                        buttons = c('pageLength','copy', 'csv', 'excel', 'pdf', 'print')
+                     ))
+    })
     
     output$plot37 <- renderPlot({
        data2 %>% 
@@ -31,21 +39,43 @@ shinyServer(function(input, output, session) {
        
     })
     
-    output$plot1 <- renderPlotly({
-        plot1 <- dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
-                   Period=="2015–2018", 
-                   Frac_counting=="0") %>% 
-            ggplot(aes(Field, impact_P, fill=Field, label= round(impact_P, digits = 2), 
-                       text=paste("Produção:",impact_P, "<br>", 
-                                  "Período:", Period))) +
-            geom_col(aes(Field, impact_P), show.legend = FALSE) + 
-            xlab("Área Científica (2015–2018)") + ylab("Número de Publicações com Impacto") + 
-            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw() + 
-            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
-        ggplotly(plot1, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+    
+    
+    output$plot01 <- renderPlotly({
+       dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
+          filter(University==input$options01,
+                 Period=="2015–2018", 
+                 Frac_counting==input$frac01)
+       
+       plot01 <- ggplot(dat01, aes(stringr::str_wrap(Field,width = 10), impact_P, fill=Field, label= round(impact_P, digits = 2), 
+                                   text=paste("impact_P% :",impact_P, "<br>", 
+                                              "Período:", Period))) +
+          geom_col( show.legend = FALSE) + 
+          xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("O número de publicações de uma universidade") + 
+          geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
+       #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+       ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+       
         
     })
+    output$plot13 <- renderPlotly(
+       {
+          dat13 <-dados %>% filter(Country=="BRAZIL") %>% 
+             filter(University==input$options7,
+                    Period=="2015–2018", 
+                    Frac_counting==input$frac7)
+          plot13 <- ggplot(dat13, aes(stringr::str_wrap(Field,width = 10), PP_top1, fill=Field, label= round(PP_top1, digits = 2), 
+                                      text=paste("PP Top 1% :",PP_top1, "<br>", 
+                                                 "Período:", Period))) +
+             geom_col( show.legend = FALSE) + 
+             xlab("Área Científica (2015–2018)") + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
+             geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat13$PP_top1)+0.001))
+          #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+          ggplotly(plot13, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+          
+       }
+    )
+    
     
     output$plot2 <- renderLeaflet({
         dados %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University)) %>% 
