@@ -51,25 +51,25 @@ dred = 'rgb(100,30,30)'
 ## DATA SOURCES
 
 dados <- readRDS("LeidenRanking2020.Rds")
-
+dados <- as.data.frame(dados)
 #dados <- readRDS("LeidenRanking.Rds")
 data2 <- read.csv("LatLongBrazilianUniversities2.csv")
 
-brazil <- dados %>% filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL SCIENCES",Per_End == 2019 | Per_End == 2018 | Per_End == 2017 | Per_End == 2016, 
+brazil <- dados %>% dplyr::filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL SCIENCES",Per_End == 2019 | Per_End == 2018 | Per_End == 2017 | Per_End == 2016, 
                            University == "UNIVERSITY OF SAO PAULO" |University == "UNIVERSIDADE ESTADUAL PAULISTA"|University == "UNIVERSITY OF CAMPINAS"| University == "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO" 
                            | University == "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL"| University == "UNIVERSIDADE FEDERAL DE MINAS GERAIS")
 brazil <- brazil[order(brazil$University),]
 brazil <- brazil %>% select(University, Per_End,impact_P,collab_P,P_top10,PP_top10,P_industry_collab)
 
-Nruniversidades <- data %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
+Nruniversidades <- dados %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
 df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)
 str(Nruniversidades)
 Nruniversidades$Country <- as.factor(Nruniversidades$Country)
-Nruniversidades$latitude <- as.numeric(Nruniversidades$latitude) 
+Nruniversidades$latitude <- as.numeric(Nruniversidades$latitude)
 Nruniversidades$longitude <- as.numeric(Nruniversidades$longitude)
 Nruniversidades$NrUniv <- as.numeric(Nruniversidades$NrUniv)
 
-brazil2 <- data %>% filter(Country=="BRAZIL")
+brazil2 <- dados %>%dplyr::filter(Country=="BRAZIL")
 
 
 #pop <- data.table::fread("Populacao.csv")

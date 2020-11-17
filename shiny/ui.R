@@ -74,7 +74,7 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                                        clusterOptions = markerClusterOptions(maxClusterRadius = 15)),
                                           br(),br(),
                                           p(style = "text-align: justify","A baixo, separamos as universidades brasileiras que tiveram
-                                            o maior destaque no último ranqueamento do CWRS Leiden, pelo indicador de número total
+                                            o maior destaque no último ranqueamento do CWTS Leiden Ranking, pelo indicador de número total
                                             de publicações."),
                                           DT::dataTableOutput('tableBrazil'),br(),
                                           p("Para acessar todas as universidades brasileiras presentes no CWTS Leiden Ranking:"),
