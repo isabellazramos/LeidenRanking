@@ -19,15 +19,15 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                        column(12,
                                       h1("Sobre o Dashboard"),
                                       sidebarPanel(
-                                        p(style="text-align: justify;","O dashboard foi construído pela aluna 
-                                             Isabella Menezes Ramos e pelo orientador professor
-                                             Fernando Souza como um trabalho de iniciação
-                                          científica, feito na Universidade Federal de Viçosa - campus Florestal."),
+                                        p(style="text-align: justify;","Este dashboard é resultado do trabalho de 
+                                        Iniciação Ciêntífica voluntária da estudante do Curso de Ciência da Computação 
+                                        Isabella Menezes Ramos. Orientada pelo professor Fernando de Souza Bastos, 
+                                        ambos da Universidade Federal de Viçosa - campus UFV - Florestal."),
                                         p(style="text-align: justify;","O código utilizado para construir
-                                          a aplicação está disponível em um
-                                          repositório aberto no GitHub e pode
-                                          futuramente ser replicado facilmente para novas
-                                          atualizações do Leiden Ranking."),
+                                          a aplicação está disponível em um repositório aberto no GitHub 
+                                          (https://github.com/fsbmat-ufv/LeidenRanking) e pode futuramente ser 
+                                          replicado facilmente para novas atualizações do Leiden 
+                                          Ranking."),
                                         br(), br(), br(), br(), br(), br(), br(), br(), br(), br(), br(), br(), br(),
                                       ),
                                       h4(style="text-align: justify;","   O dashboard tem o intuito de analisar e mostrar de forma gráfica 
