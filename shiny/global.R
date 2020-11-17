@@ -59,7 +59,7 @@ brazil <- dados %>% dplyr::filter(Country=="BRAZIL", Frac_counting == 0, Field =
                            University == "UNIVERSITY OF SAO PAULO" |University == "UNIVERSIDADE ESTADUAL PAULISTA"|University == "UNIVERSITY OF CAMPINAS"| University == "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO" 
                            | University == "FEDERAL UNIVERSITY OF RIO GRANDE DO SUL"| University == "UNIVERSIDADE FEDERAL DE MINAS GERAIS")
 brazil <- brazil[order(brazil$University),]
-brazil <- brazil %>% select(University, Per_End,impact_P,collab_P,P_top10,PP_top10,P_industry_collab)
+brazil <- brazil %>% select(University, Per_End,impact_P,P_collab,P_top10,PP_top10,P_industry_collab)
 
 Nruniversidades <- dados %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
 df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)
