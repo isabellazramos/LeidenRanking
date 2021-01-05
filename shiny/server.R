@@ -623,4 +623,23 @@ shinyServer(function(input, output, session) {
                     ))
    })  
    
+   output$plot35 <- renderPlotly(
+      {
+         dat35 <- dados %>% filter(Country == "Brazil") %>% 
+            filter(University == input$selectUniversidades01,
+                   Period == "2015-2018",Frac_counting == "0")
+         dat36 <- dados %>% filter(Country == "Brazil") %>% 
+            filter(University == input$selectUniversidades02,
+                   Period == "2015-2018",Frac_counting == "0")
+         plot35 <-  ggplot(dat35,aes(stringr::str_wrap(Field,width = 10), input$selectIndicadores01, fill=Field, label= round(input$selectIndicadores01, digits = 2), 
+                                     text=paste("input$selectIndicadores01 :",input$selectIndicadores01, "<br>", 
+                                                "Período:", Period))) +
+            geom_col(show.legend = FALSE) + 
+            xlab("Área Científica (2015–2018)") + ylab("input$selectIndicadores01") +
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat34$input$selectIndicadores01)+70))
+         #theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot35, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+      }
+   )
+   
 })
