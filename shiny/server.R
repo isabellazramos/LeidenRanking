@@ -793,7 +793,7 @@ shinyServer(function(input, output, session) {
    output$plot48 <- renderPlotly(
       {
          dat48 <-dados %>% filter(Country=="BRAZIL") %>% 
-            filter(University==input$options29,
+            filter(University==input$options43,
                    Period=="2015–2018", Frac_counting == "0")
          plot48 <-  ggplot(dat48,aes(stringr::str_wrap(Field,width = 10), PA_F, fill=Field, label= round(PA_F, digits = 2), 
                                      text=paste("PA_F :",PA_F, "<br>", 
@@ -803,6 +803,23 @@ shinyServer(function(input, output, session) {
             geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat48$PA_F)))
          #theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
          ggplotly(plot48, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+         
+      }
+   )
+   output$plot49 <- renderPlotly(
+      {
+         dat49 <-dados %>% filter(Country=="BRAZIL") %>% 
+            filter(University==input$selectUniversidades01,
+                   University == input$selectUniversidades02,
+                   Period=="2015–2018", Frac_counting == "0")
+         plot49 <-  ggplot(dat49,aes(stringr::str_wrap(Field,width = 10), input$selectIndicadores01, fill=Field, label= round(input$selectIndicadores01, digits = 2), 
+                                     text=paste("input$selectIndicadores01 :",input$selectIndicadores01, "<br>", 
+                                                "Período:", Period))) +
+            geom_col(show.legend = FALSE) + 
+            xlab("Área Científica (2015–2018)") + ylab("input$selectIndicadores01") +
+            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()
+         #theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
+         ggplotly(plot49, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          
       }
    )
