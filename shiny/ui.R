@@ -122,7 +122,8 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                                                          "USP" = "UNIVERSITY OF SAO PAULO"),
                                                                selected = "UNIVERSIDADE FEDERAL DE VICOSA")),
                                                    column(9,
-                                                          plotlyOutput("plot01"))
+                                                          plotlyOutput("plot01"),
+                                                          textOutput("textImp_p"))
                                                    )),
                           tabPanel("P_Top1",
                                    fluidRow(column(3,
