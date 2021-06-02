@@ -42,8 +42,9 @@ shinyServer(function(input, output, session) {
     
     
     output$plot01 <- renderPlotly({
-       
-       if(input$frac01 == "0")
+       if(input$optionsescolha01 == "Null")
+       {
+          if(input$frac01 == "0")
           {
              dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
                 filter(University==input$options01,
@@ -58,7 +59,7 @@ shinyServer(function(input, output, session) {
                 geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
              #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
              ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-       }else
+          }else
           {
              dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
                 filter(University==input$options01,
@@ -73,7 +74,42 @@ shinyServer(function(input, output, session) {
                 geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
              #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
              ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+          }
        }
+       else
+       {
+          if(input$frac01 == "0")
+          {
+             dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
+                filter(University %in% c(input$options01,input$optionsescolha01),
+                       Period=="2015–2018", 
+                       Frac_counting=="0") %>% select(1,9,11)
+             plot01 <- dat01 %>% 
+                ggplot(aes(x =reorder(Field, impact_P),y = impact_P, fill = University, label= round(impact_P, digits = 2), 
+                           text=paste(University,"<br>","impact_P% :",impact_P, "<br>", 
+                                      "Período:", "2015-2018"))) +
+                geom_col(position = "dodge", show.legend = FALSE) +
+                xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("Comparação: O número de publicações de uma universidade") + 
+                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
+             ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+             
+          }else
+          {
+             dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
+                filter(University %in% c(input$options01,input$optionsescolha01),
+                       Period=="2015–2018", 
+                       Frac_counting=="1") %>% select(1,9,11)
+             plot01 <- dat01 %>% 
+                ggplot(aes(x =reorder(Field, impact_P),y = impact_P, fill = University, label= round(impact_P, digits = 2), 
+                           text=paste(University,"<br>","impact_P% :",impact_P, "<br>", 
+                                      "Período:", "2015-2018"))) +
+                geom_col(position = "dodge", show.legend = FALSE) +
+                xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("Comparação: O número de publicações de uma universidade") + 
+                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
+             ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+          }
+       }
+       
        
     })
     
