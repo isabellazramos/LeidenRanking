@@ -309,36 +309,73 @@ shinyServer(function(input, output, session) {
    
    output$plot7 <- renderPlotly(
        {
-          if(input$frac7 == "0")
+          if(input$optionsescolha04 == "Null")
              {
-              dat7 <-dados %>% filter(Country=="BRAZIL") %>% 
-                  filter(University==input$options2,
-                         Period=="2015–2018", 
-                         Frac_counting=="0")
-             plot7 <- ggplot(dat7,aes(stringr::str_wrap(Field,width = 10), P_top5, fill=Field, label= round(P_top5, digits = 2), 
-                             text=paste("P Top 5% :",P_top5, "<br>", 
-                                        "Período:", Period))) +
-                  geom_col( show.legend = FALSE) + 
-                xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
-                  geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat7$P_top5)+0.5))
-                  #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-              ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-          }else
-          {
-             dat7 <-dados %>% filter(Country=="BRAZIL") %>% 
-                filter(University==input$options2,
-                       Period=="2015–2018", 
-                       Frac_counting=="1")
-             plot7 <- ggplot(dat7,aes(stringr::str_wrap(Field,width = 10), P_top5, fill=Field, label= round(P_top5, digits = 2), 
-                                      text=paste("P Top 5% :",P_top5, "<br>", 
-                                                 "Período:", Period))) +
-                geom_col( show.legend = FALSE) + 
-                xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
-                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat7$P_top5)+0.5))
-             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-             ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
-          }
-           
+                
+                if(input$frac2 == "0")
+                {
+                   dat7 <-dados %>% filter(Country=="BRAZIL") %>% 
+                      filter(University==input$options2,
+                             Period=="2015–2018", 
+                             Frac_counting=="0")
+                   plot7 <- ggplot(dat7,aes(stringr::str_wrap(Field,width = 10), P_top5, fill=Field, label= round(P_top5, digits = 2), 
+                                            text=paste("P Top 5% :",P_top5, "<br>", 
+                                                       "Período:", Period))) +
+                      geom_col( show.legend = FALSE) + 
+                      xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat7$P_top5)+0.5))
+                   #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+                   ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+                }else
+                {
+                   dat7 <-dados %>% filter(Country=="BRAZIL") %>% 
+                      filter(University==input$options2,
+                             Period=="2015–2018", 
+                             Frac_counting=="1")
+                   plot7 <- ggplot(dat7,aes(stringr::str_wrap(Field,width = 10), P_top5, fill=Field, label= round(P_top5, digits = 2), 
+                                            text=paste("P Top 5% :",P_top5, "<br>", 
+                                                       "Período:", Period))) +
+                      geom_col( show.legend = FALSE) + 
+                      xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat7$P_top5)+0.5))
+                   #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+                   ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+                }
+             
+            }else
+            {
+               if(input$frac2 == "0")
+               {
+                  dat7 <-dados %>% filter(Country=="BRAZIL") %>% 
+                     filter(University %in% c(input$options2,input$optionsescolha04),
+                            Period=="2015–2018", 
+                            Frac_counting=="0") %>% select(1,9,19)
+                  plot7 <- dat7 %>%  
+                     ggplot(aes(x =reorder(Field, P_top5),y = P_top5, fill = University, label= round(P_top5, digits = 2), 
+                                text=paste(University,"<br>","P_top5% :",P_top5, "<br>", 
+                                           "Período:", "2015-2018"))) +
+                     geom_col(position = "dodge", show.legend = FALSE) +
+                     xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                     geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat7$P_top5)+500))
+                  ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+                  
+               }else
+               {
+                  dat7 <-dados %>% filter(Country=="BRAZIL") %>% 
+                     filter(University %in% c(input$options2,input$optionsescolha04),
+                            Period=="2015–2018", 
+                            Frac_counting=="1") %>% select(1,9,19)
+                  plot7 <- dat7 %>%  
+                     ggplot(aes(x =reorder(Field, P_top5),y = P_top5, fill = University, label= round(P_top5, digits = 2), 
+                                text=paste(University,"<br>","P_top5% :",P_top5, "<br>", 
+                                           "Período:", "2015-2018"))) +
+                     geom_col(position = "dodge", show.legend = FALSE) +
+                     xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                     geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat7$P_top5)+500))
+                  ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+                  
+               }
+            }
        }
    )
    output$plot14 <- renderPlotly(
