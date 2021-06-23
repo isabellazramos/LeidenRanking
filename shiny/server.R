@@ -115,10 +115,10 @@ shinyServer(function(input, output, session) {
     
     output$textImp_p <- renderText({
        if(input$frac01 == "0"){
-          HTML(paste("<b>","Observação:","</b>", "Vou escrever sobre não fracionada."))
+          HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
           
        }else{
-          "**Observação:** Vou escrever sobre  fracionada."
+          "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
        }
     })
     
@@ -170,7 +170,7 @@ shinyServer(function(input, output, session) {
                                 text=paste(University,"<br>","PP_top1% :",PP_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
-                     xlab("Área Científica (2015–2018)") + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
+                     xlab("Área Científica (2015–2018)") + ylab("PP_top1")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat13$PP_top1)+500))
                   ggplotly(plot13, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                   
@@ -185,7 +185,7 @@ shinyServer(function(input, output, session) {
                                 text=paste(University,"<br>","PP_top1% :",PP_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
-                     xlab("Área Científica (2015–2018)") + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
+                     xlab("Área Científica (2015–2018)") + ylab("PP_top1")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat13$PP_top1)+500))
                   ggplotly(plot13, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                   
@@ -284,7 +284,7 @@ shinyServer(function(input, output, session) {
                                 text=paste(University,"<br>","P_top1% :",P_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
-                     xlab("Área Científica (2015–2018)") + ylab("P_top1")+ ggtitle("O número de publicações de uma universidade que pertencem ao 1% mais citado") + 
+                     xlab("Área Científica (2015–2018)") + ylab("P_top1")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 1% mais citado") + 
                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat6$P_top1)+500))
                   ggplotly(plot6, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                   
@@ -299,7 +299,7 @@ shinyServer(function(input, output, session) {
                                 text=paste(University,"<br>","P_top1% :",P_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
-                     xlab("Área Científica (2015–2018)") + ylab("P_top1")+ ggtitle("O número de publicações de uma universidade que pertencem ao 1% mais citado") + 
+                     xlab("Área Científica (2015–2018)") + ylab("P_top1")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 1% mais citado") + 
                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat6$P_top1)+500))
                   ggplotly(plot6, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                }
@@ -355,7 +355,7 @@ shinyServer(function(input, output, session) {
                                 text=paste(University,"<br>","P_top5% :",P_top5, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
-                     xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                     xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat7$P_top5)+500))
                   ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                   
@@ -370,7 +370,7 @@ shinyServer(function(input, output, session) {
                                 text=paste(University,"<br>","P_top5% :",P_top5, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
-                     xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                     xlab("Área Científica (2015–2018)") + ylab("P_top5")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 5% mais citado") + 
                      geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat7$P_top5)+500))
                   ggplotly(plot7, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                   
@@ -425,7 +425,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","PP_top5% :",PP_top5, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top5")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                   xlab("Área Científica (2015–2018)") + ylab("PP_top5")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 5% mais citado") + 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat14$PP_top5)+500))
                 ggplotly(plot14, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
                 
@@ -440,7 +440,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","PP_top5% :",PP_top5, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top5")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 5% mais citado") + 
+                   xlab("Área Científica (2015–2018)") + ylab("PP_top5")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 5% mais citado") + 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat14$PP_top5)+500))
                 ggplotly(plot14, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -495,7 +495,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","P_top10% :",P_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("P_top10")+ ggtitle("O número de publicações de uma universidade que pertencem ao 10% mais citado") + 
+                   xlab("Área Científica (2015–2018)") + ylab("P_top10")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 10% mais citado") + 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat8$P_top10)+500))
                 ggplotly(plot8, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -509,7 +509,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","P_top10% :",P_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("P_top10")+ ggtitle("O número de publicações de uma universidade que pertencem ao 10% mais citado") + 
+                   xlab("Área Científica (2015–2018)") + ylab("P_top10")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 10% mais citado") + 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat8$P_top10)+500))
                 ggplotly(plot8, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -564,7 +564,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","PP_top10% :",PP_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top10")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 10% mais citado")+ 
+                   xlab("Área Científica (2015–2018)") + ylab("PP_top10")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 10% mais citado")+ 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat15$PP_top10)+500))
                 ggplotly(plot15, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -578,7 +578,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","PP_top10% :",PP_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top10")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 10% mais citado")+ 
+                   xlab("Área Científica (2015–2018)") + ylab("PP_top10")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 10% mais citado")+ 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat15$PP_top10)+500))
                 ggplotly(plot15, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -636,7 +636,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","P_top50% :",P_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("P_top50")+ ggtitle("O número de publicações de uma universidade que pertencem ao 50% mais citado")+ 
+                   xlab("Área Científica (2015–2018)") + ylab("P_top50")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 50% mais citado")+ 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat9$P_top50)+500))
                 ggplotly(plot9, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -650,7 +650,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","P_top50% :",P_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                       geom_col(position = "dodge", show.legend = FALSE) +
-                      xlab("Área Científica (2015–2018)") + ylab("P_top50")+ ggtitle("O número de publicações de uma universidade que pertencem ao 50% mais citado")+ 
+                      xlab("Área Científica (2015–2018)") + ylab("P_top50")+ ggtitle("Comparação: O número de publicações de uma universidade que pertencem ao 50% mais citado")+ 
                       geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat9$P_top50)+500))
                    ggplotly(plot9, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -705,7 +705,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","PP_top50% :",PP_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top50")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
+                   xlab("Área Científica (2015–2018)") + ylab("PP_top50")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat16$PP_top50)+500))
                 ggplotly(plot16, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -719,7 +719,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","PP_top50% :",PP_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top50")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
+                   xlab("Área Científica (2015–2018)") + ylab("PP_top50")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat16$PP_top50)+500))
                 ggplotly(plot16, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -742,7 +742,7 @@ shinyServer(function(input, output, session) {
                                                       "Período:", Period))) +
                    geom_col(show.legend = FALSE) + 
                    xlab("Área Científica (2015–2018)") + ylab("TCS") + ggtitle("O número total de citações das publicações de uma universidade")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat10$TCS)+1000))
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat10$TCS)+500))
                 #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
                 ggplotly(plot10, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -756,7 +756,7 @@ shinyServer(function(input, output, session) {
                                                       "Período:", Period))) +
                    geom_col(show.legend = FALSE) + 
                    xlab("Área Científica (2015–2018)") + ylab("TCS") + ggtitle("O número total de citações das publicações de uma universidade")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat10$TCS)+1000))
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat10$TCS)+500))
                 #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
                 ggplotly(plot10, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -773,7 +773,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","TCS% :",TCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("TCS")+  ggtitle("O número total de citações das publicações de uma universidade")+
+                   xlab("Área Científica (2015–2018)") + ylab("TCS")+  ggtitle("Comparação: O número total de citações das publicações de uma universidade")+
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat10$TCS)+500))
                 ggplotly(plot10, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -787,7 +787,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","TCS% :",TCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("TCS")+  ggtitle("O número total de citações das publicações de uma universidade")+
+                   xlab("Área Científica (2015–2018)") + ylab("TCS")+  ggtitle("Comparação: O número total de citações das publicações de uma universidade")+
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat10$TCS)+500))
                 ggplotly(plot10, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -844,7 +844,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","TNCS% :",TNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("TCS")+ ggtitle("O número total de citações das publicações de uma universidade")+
+                   xlab("Área Científica (2015–2018)") + ylab("TCS")+ ggtitle("Comparação: O número total de citações das publicações de uma universidade")+
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat17$TNCS)+500))
                 ggplotly(plot17, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -858,7 +858,7 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","TNCS% :",TNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("TCS")+ ggtitle("O número total de citações das publicações de uma universidade")+
+                   xlab("Área Científica (2015–2018)") + ylab("TCS")+ ggtitle("Comparação: O número total de citações das publicações de uma universidade")+
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat17$TNCS)+500))
                 ggplotly(plot17, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -883,7 +883,7 @@ shinyServer(function(input, output, session) {
                                                       "Período:", Period))) +
                    geom_col( show.legend = FALSE) + 
                    xlab("Área Científica (2015–2018)") + ylab("MCS") + ggtitle("O número médio de citações das publicações de uma universidade")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat12$MCS)+1))
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat12$MCS)))
                 #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
                 ggplotly(plot12, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
@@ -897,7 +897,7 @@ shinyServer(function(input, output, session) {
                                                       "Período:", Period))) +
                    geom_col( show.legend = FALSE) + 
                    xlab("Área Científica (2015–2018)") + ylab("MCS") + ggtitle("O número médio de citações das publicações de uma universidade")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat12$MCS)+1))
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat12$MCS)))
                 #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
                 ggplotly(plot12, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
@@ -916,8 +916,8 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","MCS% :",MCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("MCS")+ ggtitle("O número total de citações das publicações de uma universidade")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat12$MCS)+500))
+                   xlab("Área Científica (2015–2018)") + ylab("MCS")+ ggtitle("Comparação: O número total de citações das publicações de uma universidade")+
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat12$MCS)))
                 ggplotly(plot12, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
              {
@@ -930,8 +930,8 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","MCS% :",MCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("MCS")+ ggtitle("O número total de citações das publicações de uma universidade")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat12$MCS)+500))
+                   xlab("Área Científica (2015–2018)") + ylab("MCS")+ ggtitle("Comparação: O número total de citações das publicações de uma universidade")+
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat12$MCS)))
                 ggplotly(plot12, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
              
@@ -984,8 +984,8 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","MNCS% :",MNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("MNCS")+ggtitle("O número médio de citações das publicações de uma universidade por campo e ano de publicação")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat18$MNCS)+500))
+                   xlab("Área Científica (2015–2018)") + ylab("MNCS")+ggtitle("Comparação: O número médio de citações das publicações de uma universidade por campo e ano de publicação")+
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat18$MNCS)))
                 ggplotly(plot18, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
              {
@@ -998,8 +998,8 @@ shinyServer(function(input, output, session) {
                               text=paste(University,"<br>","MNCS% :",MNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
-                   xlab("Área Científica (2015–2018)") + ylab("MNCS")+ggtitle("O número médio de citações das publicações de uma universidade por campo e ano de publicação")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat18$MNCS)+500))
+                   xlab("Área Científica (2015–2018)") + ylab("MNCS")+ggtitle("Comparação: O número médio de citações das publicações de uma universidade por campo e ano de publicação")+
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat18$MNCS)))
                 ggplotly(plot18, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
           }
@@ -1048,7 +1048,7 @@ shinyServer(function(input, output, session) {
                                        text=paste("PP_collab :",PP_collab, "<br>", 
                                                   "Período:", Period))) +
                geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("PP_collab")+ggtitle("A proporção de publicações de uma universidade que foram coautoria de uma ou mais outras organizações") + 
+               xlab("Área Científica (2015–2018)") + ylab("PP_collab")+ggtitle("Comparação: A proporção de publicações de uma universidade que foram coautoria de uma ou mais outras organizações") + 
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat35$PP_collab)+0.05))
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
             ggplotly(plot35, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -1063,8 +1063,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_collab :",PP_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_collab")+ggtitle("A proporção de publicações de uma universidade que foram coautoria de uma ou mais outras organizações")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat35$PP_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_collab")+ggtitle("Comparação: A proporção de publicações de uma universidade que foram coautoria de uma ou mais outras organizações")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat35$PP_collab)+0.05))
             ggplotly(plot35, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
             
          }
@@ -1097,7 +1097,7 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_int_collab :",P_int_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_int_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de dois ou mais países")+
+               xlab("Área Científica (2015–2018)") + ylab("P_int_collab")+ ggtitle("Comparação: O número de publicações de uma universidade que foram coautoria de dois ou mais países")+
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat20$P_int_collab)+1000))
             ggplotly(plot20, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
@@ -1129,8 +1129,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_int_collab :",PP_int_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_int_collab")+ ggtitle("A proporção de publicações de uma universidade que foram coautoria de dois ou mais países")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat36$PP_int_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_int_collab")+ ggtitle("Comparação: A proporção de publicações de uma universidade que foram coautoria de dois ou mais países")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat36$PP_int_collab)+0.05))
             ggplotly(plot36, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
             
          }
@@ -1161,8 +1161,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_industry_collab :",P_industry_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_industry_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat21$P_industry_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_industry_collab")+ ggtitle("Comparação: O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat21$P_industry_collab)+0.05))
             ggplotly(plot21, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
          
@@ -1195,8 +1195,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_industry_collab :",PP_industry_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_industry_collab")+ ggtitle("A proporção de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat37$PP_industry_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_industry_collab")+ ggtitle("Comparação: A proporção de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat37$PP_industry_collab)+0.05))
             ggplotly(plot37, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
             
          }
@@ -1229,8 +1229,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_short_dist_collab :",P_short_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_short_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_short_dist_collab")+ ggtitle("Comparação: O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+0.05))
             ggplotly(plot22, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1261,8 +1261,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_short_dist_collab :",PP_short_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_short_dist_collab")+ ggtitle("A proporção de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat38$PP_short_dist_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_short_dist_collab")+ ggtitle("Comparação: A proporção de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat38$PP_short_dist_collab)+0.05))
             ggplotly(plot38, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1294,8 +1294,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_long_dist_collab :",P_long_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_long_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat23$P_long_dist_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_long_dist_collab")+ ggtitle("Comparação: O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat23$P_long_dist_collab)+0.05))
             ggplotly(plot23, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
             
          }
@@ -1327,8 +1327,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_long_dist_collab :",PP_long_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_long_dist_collab")+ ggtitle("A proporção de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat39$PP_long_dist_collab)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_long_dist_collab")+ ggtitle("Comparação: A proporção de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat39$PP_long_dist_collab)))
             ggplotly(plot39, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1359,8 +1359,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_OA :",P_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_OA")+ ggtitle("O número de publicações de acesso aberto de uma universidade.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat24$P_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_OA")+ ggtitle("Comparação: O número de publicações de acesso aberto de uma universidade.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat24$P_OA)+0.05))
             ggplotly(plot24, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1391,8 +1391,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_OA :",PP_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_OA")+ ggtitle("A proporção de publicações de acesso aberto de uma universidade.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat40$PP_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_OA")+ ggtitle("Comparação: A proporção de publicações de acesso aberto de uma universidade.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat40$PP_OA)+0.05))
             ggplotly(plot40, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
             
          }
@@ -1424,8 +1424,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_gold_OA :",P_gold_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_gold_OA")+ ggtitle("O número de ouro em publicações de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat25$P_gold_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_gold_OA")+ ggtitle("Comparação: O número de ouro em publicações de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat25$P_gold_OA)+0.05))
             ggplotly(plot25, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1456,8 +1456,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_gold_OA :",PP_gold_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_gold_OA")+ ggtitle("A proporção de ouro em publicações de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat41$PP_gold_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_gold_OA")+ ggtitle("Comparação: A proporção de ouro em publicações de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat41$PP_gold_OA)+0.05))
             ggplotly(plot41, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1489,8 +1489,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_hybrid_OA :",P_hybrid_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_hybrid_OA")+ ggtitle("O número de publicações híbridas de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat26$P_hybrid_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_hybrid_OA")+ ggtitle("Comparação: O número de publicações híbridas de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat26$P_hybrid_OA)+0.05))
             ggplotly(plot26, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1521,8 +1521,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_hybrid_OA :",PP_hybrid_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_hybrid_OA")+  ggtitle("A proporção de publicações híbridas de acesso aberto de uma universidade") +
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat42$PP_hybrid_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_hybrid_OA")+  ggtitle("Comparação: A proporção de publicações híbridas de acesso aberto de uma universidade") +
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat42$PP_hybrid_OA)+0.05))
             ggplotly(plot42, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1552,8 +1552,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_bronze_OA :",P_bronze_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_bronze_OA")+  ggtitle("O número de publicações de acesso aberto em bronze de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat27$P_bronze_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_bronze_OA")+  ggtitle("Comparação: O número de publicações de acesso aberto em bronze de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat27$P_bronze_OA)+0.05))
             ggplotly(plot27, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1584,8 +1584,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_bronze_OA :",PP_bronze_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_bronze_OA")+ggtitle("A proporção de publicações de acesso aberto em bronze de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat43$PP_bronze_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_bronze_OA")+ggtitle("Comparação: A proporção de publicações de acesso aberto em bronze de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat43$PP_bronze_OA)+0.05))
             ggplotly(plot43, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1616,8 +1616,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_green_OA :",P_green_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_green_OA")+ ggtitle("O número de publicações verdes de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat28$P_green_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_green_OA")+ ggtitle("Comparação: O número de publicações verdes de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat28$P_green_OA)+0.05))
             ggplotly(plot28, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
          
@@ -1649,8 +1649,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_green_OA :",PP_green_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_green_OA")+ ggtitle("A proporção de publicações verdes de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat44$PP_green_OA)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_green_OA")+ ggtitle("Comparação: A proporção de publicações verdes de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat44$PP_green_OA)+0.05))
             ggplotly(plot44, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1681,8 +1681,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_OA_unknown :",P_OA_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_OA_unknown")+ ggtitle("O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat29$P_OA_unknown)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("P_OA_unknown")+ ggtitle("Comparação: O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat29$P_OA_unknown)+0.05))
             ggplotly(plot29, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
          
@@ -1714,8 +1714,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PP_OA_unknown :",PP_OA_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PP_OA_unknown")+ ggtitle("A proporção de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat45$PP_OA_unknown)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PP_OA_unknown")+ ggtitle("Comparação: A proporção de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat45$PP_OA_unknown)+0.05))
             ggplotly(plot45, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1746,8 +1746,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","gender_A :",gender_A, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("gender_A")+ggtitle("O número total de autorias de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat30$gender_A)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("gender_A")+ggtitle("Comparação: O número total de autorias de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat30$gender_A)+0.05))
             ggplotly(plot30, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1778,8 +1778,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","gender_A_MF :",gender_A_MF, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("gender_A_MF")+ggtitle("O número de autorias de uma universidade pelas quais o gênero é conhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat31$gender_A_MF)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("gender_A_MF")+ggtitle("Comparação: O número de autorias de uma universidade pelas quais o gênero é conhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat31$gender_A_MF)+0.05))
             ggplotly(plot31, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1810,8 +1810,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","A_gender_unknown :",A_gender_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("A_gender_unknown")+ggtitle("O número de autorias de uma universidade para as quais o gênero é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat32$A_gender_unknown)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("A_gender_unknown")+ggtitle("Comparação: O número de autorias de uma universidade para as quais o gênero é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat32$A_gender_unknown)+0.05))
             ggplotly(plot32, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
       }
@@ -1842,8 +1842,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PA_gender_unknown :",PA_gender_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PA_gender_unknown")+ggtitle("A proporção de autorias de uma universidade para as quais o gênero é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat46$PA_gender_unknown)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PA_gender_unknown")+ggtitle("Comparação: A proporção de autorias de uma universidade para as quais o gênero é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat46$PA_gender_unknown)+0.05))
             ggplotly(plot46, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
          
@@ -1875,7 +1875,7 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","A_M :",A_M, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("A_M")+ggtitle("O número de autorias masculinas de uma universidade")+
+               xlab("Área Científica (2015–2018)") + ylab("A_M")+ggtitle("Comparação: O número de autorias masculinas de uma universidade")+
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat33$A_M)+1000))
             ggplotly(plot33, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
@@ -1883,10 +1883,10 @@ shinyServer(function(input, output, session) {
    )
    output$plot47 <- renderPlotly(
       {
-         if(input$optionsescolha42 == "Null")
+         if(input$optionsescolha41 == "Null")
          {
             dat47 <-dados %>% filter(Country=="BRAZIL") %>% 
-               filter(University==input$options44,
+               filter(University==input$options42,
                       Period=="2015–2018", Frac_counting == "0") 
             plot47 <- ggplot(dat47,aes(stringr::str_wrap(Field,width = 10), PA_M, fill=Field, label= round(PA_M, digits = 2), 
                                        text=paste("PA_M :",PA_M, "<br>", 
@@ -1900,15 +1900,15 @@ shinyServer(function(input, output, session) {
          }else
          {
             dat47 <-dados %>% filter(Country=="BRAZIL") %>% 
-               filter(University %in% c(input$options44,input$optionsescolha42),
+               filter(University %in% c(input$options42,input$optionsescolha41),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,88)
             plot47 <- dat47 %>% 
                ggplot(aes(x =reorder(Field, PA_M),y = PA_M, fill = University, label= round(PA_M, digits = 2), 
                           text=paste(University,"<br>","PA_M :",PA_M, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PA_M")+ggtitle("O número de autorias masculinas de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat47$PA_M)+1000))
+               xlab("Área Científica (2015–2018)") + ylab("PA_M")+ggtitle("Comparação: O número de autorias masculinas de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat47$PA_M)))
             ggplotly(plot47, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
          
@@ -1940,7 +1940,7 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","A_F :",A_F, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("A_F")+ggtitle("O número de autorias femininas de uma universidade")+
+               xlab("Área Científica (2015–2018)") + ylab("A_F")+ggtitle("Comparação: O número de autorias femininas de uma universidade")+
                geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat34$A_F)+70))
             ggplotly(plot34, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
    
@@ -1973,8 +1973,8 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","PA_F :",PA_F, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("PA_F")+ggtitle("A proporção de autorias femininas de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat48$PA_F)+70))
+               xlab("Área Científica (2015–2018)") + ylab("PA_F")+ggtitle("Comparação: A proporção de autorias femininas de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat48$PA_F)))
             ggplotly(plot48, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
          }
          
