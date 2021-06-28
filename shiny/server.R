@@ -122,6 +122,15 @@ shinyServer(function(input, output, session) {
        }
     })
     
+    output$textImp_p2 <- renderText({
+       if(input$frac7 == "0"){
+          HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+          
+       }else{
+          "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+       }
+    })
+    
     output$plot13 <- renderPlotly(
        {
           if(input$optionsescolha03 == "Null")
@@ -238,6 +247,14 @@ shinyServer(function(input, output, session) {
        
    })
    
+   output$textImp_p3 <- renderText({
+      if(input$frac == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot6 <- renderPlotly(
        {
          if(input$optionsescolha02 == "Null")
@@ -307,6 +324,14 @@ shinyServer(function(input, output, session) {
        }
    )
    
+   output$textImp_p4 <- renderText({
+      if(input$frac2 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot7 <- renderPlotly(
        {
           if(input$optionsescolha04 == "Null")
@@ -378,6 +403,15 @@ shinyServer(function(input, output, session) {
             }
        }
    )
+   
+   output$textImp_p5 <- renderText({
+      if(input$frac8 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot14 <- renderPlotly(
        {
           if(input$optionsescolha05 == "Null")
@@ -449,6 +483,14 @@ shinyServer(function(input, output, session) {
        }
    )
    
+   output$textImp_p6 <- renderText({
+      if(input$frac3 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot8 <- renderPlotly(
        {
           if(input$optionsescolha06 ==  "Null")
@@ -516,6 +558,14 @@ shinyServer(function(input, output, session) {
           }
        }
    )
+   output$textImp_p7 <- renderText({
+      if(input$frac9 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot15 <- renderPlotly(
        {
           if(input$optionsescolha07 == "Null")
@@ -587,6 +637,14 @@ shinyServer(function(input, output, session) {
           
        }
    )
+   output$textImp_p8 <- renderText({
+      if(input$frac4 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot9 <- renderPlotly(
        {
           if(input$optionsescolha08 == "Null")
@@ -658,6 +716,14 @@ shinyServer(function(input, output, session) {
          
        }
    )
+   output$textImp_p9 <- renderText({
+      if(input$frac10 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot16 <- renderPlotly(
        {
           if(input$optionsescolha09 =="0")
@@ -706,7 +772,7 @@ shinyServer(function(input, output, session) {
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
                    xlab("Área Científica (2015–2018)") + ylab("PP_top50")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat16$PP_top50)+500))
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat16$PP_top50)+0.005))
                 ggplotly(plot16, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }else
              {
@@ -720,13 +786,21 @@ shinyServer(function(input, output, session) {
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
                    xlab("Área Científica (2015–2018)") + ylab("PP_top50")+ ggtitle("Comparação: A proporção de publicações de uma universidade que pertencem ao 50% mais citado")+
-                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat16$PP_top50)+500))
+                   geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat16$PP_top50)+0.005))
                 ggplotly(plot16, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              }
              
           }
        }
    )
+   output$textImp_p10 <- renderText({
+      if(input$frac5 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot10 <- renderPlotly(
        {
           if(input$optionsescolha10 ==  "Null")
@@ -794,6 +868,14 @@ shinyServer(function(input, output, session) {
           }
        }
    )
+   output$textImp_p11 <- renderText({
+      if(input$frac11 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot17 <- renderPlotly(
        {
           if(input$optionsescolha11 ==  "Null")
@@ -867,6 +949,14 @@ shinyServer(function(input, output, session) {
      
        }
    )
+   output$textImp_p12 <- renderText({
+      if(input$frac6 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot12 <- renderPlotly(
        {
           if(input$optionsescolha12 == "Null")
@@ -938,6 +1028,14 @@ shinyServer(function(input, output, session) {
           }
        }
    )
+   output$textImp_p13 <- renderText({
+      if(input$frac12 == "0"){
+         HTML(paste("A contagem não fracionada leva em conta o número absoluto de publicações de uma universidade."))
+         
+      }else{
+         "A contagem fracionada leva em conta a proporção de cada universidade em um determinado trabalho em conjunto com outras universidades."
+      }
+   })
    output$plot18 <- renderPlotly(
        {
           if(input$optionsescolha13 == "Null"){
