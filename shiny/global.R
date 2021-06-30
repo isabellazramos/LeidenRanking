@@ -138,6 +138,9 @@ InstName2 <- (Instituicoes=c("Não Selecionada","UFLA"   ="FEDERAL UNIVERSITY OF
                             "UNICAMP"="UNIVERSITY OF CAMPINAS"                   ,
                             "USP"    ="UNIVERSITY OF SAO PAULO" ))
 
+#clean_inst = brazil2 %>% filter(!is.na(ticker$Name))
+#stock_names_ticker = setNames(brazil2$University, clean_tickers$Name)
+
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")
 
