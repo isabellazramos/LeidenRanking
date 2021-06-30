@@ -49,8 +49,8 @@ dred = 'rgb(100,30,30)'
 
 ##############################################################################
 ## DATA SOURCES
-
-dados <- readRDS("LeidenRanking2020.Rds")
+dados <- readRDS("LeidenRanking.Rds")
+teste <- readRDS("LeidenRanking.Rds") %>% filter(Country=="BRAZIL")
 dados <- as.data.frame(dados)
 #dados <- readRDS("LeidenRanking.Rds")
 data2 <- read.csv("LatLongBrazilianUniversities2.csv")
@@ -63,14 +63,78 @@ brazil <- brazil %>% select(University, Per_End,impact_P,P_collab,P_top10,PP_top
 
 Nruniversidades <- dados %>% group_by(Country, latitude, longitude) %>% summarise(NrUniv=n_distinct(University))
 df <-  data.frame(Cor = topo.colors(56, alpha = NULL), stringsAsFactors = FALSE)
-str(Nruniversidades)
+#str(Nruniversidades)
 Nruniversidades$Country <- as.factor(Nruniversidades$Country)
 Nruniversidades$latitude <- as.numeric(Nruniversidades$latitude)
 Nruniversidades$longitude <- as.numeric(Nruniversidades$longitude)
 Nruniversidades$NrUniv <- as.numeric(Nruniversidades$NrUniv)
 
+
+brazil2 <- dados %>% filter(Country=="BRAZIL")
+
 brazil2 <- dados %>%dplyr::filter(Country=="BRAZIL")
 
+
+InstName <- (Instituicoes=c("UFLA"   ="FEDERAL UNIVERSITY OF LAVRAS"             ,
+                  "UFMT"   ="FEDERAL UNIVERSITY OF MATO GROSSO"        ,
+                  "UFPA"   ="FEDERAL UNIVERSITY OF PARA"               ,
+                  "UFPB"   ="FEDERAL UNIVERSITY OF PARAIBA"            ,
+                  "UFPel"  ="FEDERAL UNIVERSITY OF PELOTAS"            ,
+                  "UFPE"   ="FEDERAL UNIVERSITY OF PERNAMBUCO"         ,
+                  "UFRN"   ="FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE",
+                  "UFRGS"  ="FEDERAL UNIVERSITY OF RIO GRANDE DO SUL"  ,
+                  "UFSM"   ="FEDERAL UNIVERSITY OF SANTA MARIA"        ,
+                  "UFSCAR" ="FEDERAL UNIVERSITY OF SAO CARLOS"         ,
+                  "UFU"    ="FEDERAL UNIVERSITY OF UBERLANDIA"         ,
+                  "UEL"    ="LONDRINA STATE UNIVERSITY"                ,
+                  "UERJ"   ="RIO DE JANEIRO STATE UNIVERSITY"          ,
+                  "UEM"    ="STATE UNIVERSITY OF MARINGA"              ,
+                  "UNB"    ="UNIVERSIDADE DE BRASILIA"                 ,
+                  "UNESP"  ="UNIVERSIDADE ESTADUAL PAULISTA"           ,
+                  "UFBA"   ="UNIVERSIDADE FEDERAL DA BAHIA"            ,
+                  "UFG"    ="UNIVERSIDADE FEDERAL DE GOIAS"            ,
+                  "UFJF"   ="UNIVERSIDADE FEDERAL DE JUIZ DE FORA"     ,
+                  "UFMG"   ="UNIVERSIDADE FEDERAL DE MINAS GERAIS"     ,
+                  "UFSC"   ="UNIVERSIDADE FEDERAL DE SANTA CATARINA"   ,
+                  "USP"    ="UNIVERSIDADE FEDERAL DE SAO PAULO"        ,
+                  "UFV"    ="UNIVERSIDADE FEDERAL DE VICOSA"           ,
+                  "UFC"    ="UNIVERSIDADE FEDERAL DO CEARA"            ,
+                  "UFES"   ="UNIVERSIDADE FEDERAL DO ESPIRITO SANTO"   ,
+                  "UFPR"   ="UNIVERSIDADE FEDERAL DO PARANA"           ,
+                  "UFRJ"   ="UNIVERSIDADE FEDERAL DO RIO DE JANEIRO"   ,
+                  "UFF"    ="UNIVERSIDADE FEDERAL FLUMINENSE"          ,
+                  "UNICAMP"="UNIVERSITY OF CAMPINAS"                   ,
+                  "USP"    ="UNIVERSITY OF SAO PAULO" ))
+InstName2 <- (Instituicoes=c("Não Selecionada","UFLA"   ="FEDERAL UNIVERSITY OF LAVRAS"             ,
+                            "UFMT"   ="FEDERAL UNIVERSITY OF MATO GROSSO"        ,
+                            "UFPA"   ="FEDERAL UNIVERSITY OF PARA"               ,
+                            "UFPB"   ="FEDERAL UNIVERSITY OF PARAIBA"            ,
+                            "UFPel"  ="FEDERAL UNIVERSITY OF PELOTAS"            ,
+                            "UFPE"   ="FEDERAL UNIVERSITY OF PERNAMBUCO"         ,
+                            "UFRN"   ="FEDERAL UNIVERSITY OF RIO GRANDE DO NORTE",
+                            "UFRGS"  ="FEDERAL UNIVERSITY OF RIO GRANDE DO SUL"  ,
+                            "UFSM"   ="FEDERAL UNIVERSITY OF SANTA MARIA"        ,
+                            "UFSCAR" ="FEDERAL UNIVERSITY OF SAO CARLOS"         ,
+                            "UFU"    ="FEDERAL UNIVERSITY OF UBERLANDIA"         ,
+                            "UEL"    ="LONDRINA STATE UNIVERSITY"                ,
+                            "UERJ"   ="RIO DE JANEIRO STATE UNIVERSITY"          ,
+                            "UEM"    ="STATE UNIVERSITY OF MARINGA"              ,
+                            "UNB"    ="UNIVERSIDADE DE BRASILIA"                 ,
+                            "UNESP"  ="UNIVERSIDADE ESTADUAL PAULISTA"           ,
+                            "UFBA"   ="UNIVERSIDADE FEDERAL DA BAHIA"            ,
+                            "UFG"    ="UNIVERSIDADE FEDERAL DE GOIAS"            ,
+                            "UFJF"   ="UNIVERSIDADE FEDERAL DE JUIZ DE FORA"     ,
+                            "UFMG"   ="UNIVERSIDADE FEDERAL DE MINAS GERAIS"     ,
+                            "UFSC"   ="UNIVERSIDADE FEDERAL DE SANTA CATARINA"   ,
+                            "USP"    ="UNIVERSIDADE FEDERAL DE SAO PAULO"        ,
+                            "UFV"    ="UNIVERSIDADE FEDERAL DE VICOSA"           ,
+                            "UFC"    ="UNIVERSIDADE FEDERAL DO CEARA"            ,
+                            "UFES"   ="UNIVERSIDADE FEDERAL DO ESPIRITO SANTO"   ,
+                            "UFPR"   ="UNIVERSIDADE FEDERAL DO PARANA"           ,
+                            "UFRJ"   ="UNIVERSIDADE FEDERAL DO RIO DE JANEIRO"   ,
+                            "UFF"    ="UNIVERSIDADE FEDERAL FLUMINENSE"          ,
+                            "UNICAMP"="UNIVERSITY OF CAMPINAS"                   ,
+                            "USP"    ="UNIVERSITY OF SAO PAULO" ))
 
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")

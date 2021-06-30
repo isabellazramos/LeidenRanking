@@ -42,13 +42,14 @@ shinyServer(function(input, output, session) {
     
     
     output$plot01 <- renderPlotly({
+       dados <- dados %>% filter(year==input$AnoImpact_P)
        if(input$optionsescolha01 == "Null")
        {
           if(input$frac01 == "0")
           {
              dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
                 filter(University==input$options01,
-                       Period=="2015–2018", 
+                       Period==ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"), 
                        Frac_counting=="0")
              
              plot01 <- ggplot(dat01, aes(stringr::str_wrap(Field,width = 10), impact_P, fill=Field, label= round(impact_P, digits = 2), 
