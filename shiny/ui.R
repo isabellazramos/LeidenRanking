@@ -86,7 +86,17 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                                  textOutput("textInstPais"))
                                  )),
                         tabPanel("Treemap",
-                                 fluidRow(column(12,
+                                 fluidRow(column(3,
+                                                 selectInput("Field1",
+                                                             strong("Área Científica:"),
+                                                             choices = c(
+                                                             "TODAS AS ÁREAS"                    ="ALL SCIENCES"                     ,
+                                                             "CIÊNCIAS BIOMÉDICAS E DA SAÚDE"    ="BIOMEDICAL AND HEALTH SCIENCES"   ,
+                                                             "CIÊNCIAS DA VIDA E DA TERRA"       ="LIFE AND EARTH SCIENCES"          ,
+                                                             "MATEMÁTICA E CIÊNCIA DA COMPUTAÇÃO"="MATHEMATICS AND COMPUTER SCIENCE" ,
+                                                             "CIÊNCIAS FÍSICAS E ENGENHARIA"     ="PHYSICAL SCIENCES AND ENGINEERING",
+                                                             "CIÊNCIAS SOCIAIS E HUMANIDADES"    ="SOCIAL SCIENCES AND HUMANITIES"    ))),
+                                          column(9,
                                                  plotOutput("treemap"),
                                                  textOutput("texttreemap"))
                                  ))

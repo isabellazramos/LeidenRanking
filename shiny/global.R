@@ -31,10 +31,8 @@ options(DT.options = list(scrollY="300px",scrollX="300px",
 library("shinydashboard")
 library("shinyWidgets") # nicer inputs
 ##############################################################################
-names(aggSetor) <- c("university", "impact_P", "P_top10", "escala")
-aggSetor <-data%>%filter(date==(last(data$date)-1))%>%group_by(state) %>% 
-  summarise(quantidade = sum(deaths), confirmedM = mean(confirmed))
-aggSetor$escala <- scale(aggSetor$confirmedM)
+#names(aggSetor) <- c("university", "impact_P", "P_top10", "escala")
+
 ## Define font to be used later
 f1 = list(family = "Arial", size = 10, color = "rgb(30,30,30)")
 
@@ -54,7 +52,6 @@ dred = 'rgb(100,30,30)'
 ##############################################################################
 ## DATA SOURCES
 dados <- readRDS("LeidenRanking.Rds")
-teste <- readRDS("LeidenRanking.Rds") %>% filter(Country=="BRAZIL")
 dados <- as.data.frame(dados)
 #dados <- readRDS("LeidenRanking.Rds")
 data2 <- read.csv("LatLongBrazilianUniversities2.csv")
@@ -74,7 +71,7 @@ Nruniversidades$longitude <- as.numeric(Nruniversidades$longitude)
 Nruniversidades$NrUniv <- as.numeric(Nruniversidades$NrUniv)
 
 
-brazil2 <- dados %>% filter(Country=="BRAZIL")
+brazil2 <- dados %>% dplyr::filter(Country=="BRAZIL")
 
 brazil2 <- dados %>%dplyr::filter(Country=="BRAZIL")
 
@@ -102,6 +99,7 @@ InstName <- (Instituicoes=c("UFLA"   ="FEDERAL UNIVERSITY OF LAVRAS"            
                   "UFSC"   ="UNIVERSIDADE FEDERAL DE SANTA CATARINA"   ,
                   "USP"    ="UNIVERSIDADE FEDERAL DE SAO PAULO"        ,
                   "UFV"    ="UNIVERSIDADE FEDERAL DE VICOSA"           ,
+                  "UFABC"  ="UNIVERSIDADE FEDERAL DO ABC"              ,
                   "UFC"    ="UNIVERSIDADE FEDERAL DO CEARA"            ,
                   "UFES"   ="UNIVERSIDADE FEDERAL DO ESPIRITO SANTO"   ,
                   "UFPR"   ="UNIVERSIDADE FEDERAL DO PARANA"           ,
@@ -143,6 +141,4 @@ InstName2 <- (Instituicoes=c("Não Selecionada","UFLA"   ="FEDERAL UNIVERSITY OF
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")
 
-aggSetor <-brazil2%>%filter(Per_End=="2019", Frac_counting=="1", Field=="ALL SCIENCES") %>% 
-  select(University, impact_P, P_top10)
-aggSetor$escala <- scale(aggSetor$P_top10)
+
