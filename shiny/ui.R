@@ -79,7 +79,17 @@ shinyUI(fluidPage(theme = shinytheme("sandstone"),
                                           DT::dataTableOutput('tableBrazil'),br(),
                                           p("Para acessar todas as universidades brasileiras presentes no CWTS Leiden Ranking:"),
                                           DT::dataTableOutput("table2")
-                                 )))
+                                 ))),
+                        tabPanel("Instituições por País",
+                                 fluidRow(column(12,
+                                                 plotlyOutput("InstPais"),
+                                                 textOutput("textInstPais"))
+                                 )),
+                        tabPanel("Treemap",
+                                 fluidRow(column(12,
+                                                 plotOutput("treemap"),
+                                                 textOutput("texttreemap"))
+                                 ))
                             
                         )# barra de navegacao interna
                     ),# barra de navegacao superior 

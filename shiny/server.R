@@ -39,6 +39,20 @@ shinyServer(function(input, output, session) {
        
     })
     
+    output$treemap <- renderPlot({
+       ggplot(aggSetor, aes(area = impact_P, fill = P_top10, label = University)) +
+          geom_treemap()+scale_fill_gradient2(low = "#F8766D",
+                                              high = "red",
+                                              space = "Lab")+
+          #scale_fill_gradient(low = "yellow", high = "red", na.value = NA)+
+          geom_treemap_text(place = "centre",grow = T, reflow = T, alpha = .8, colour = "black") +
+          theme(legend.position = "bottom") +
+          labs(
+             title = "Universidades Brasileiras no Leiden Ranking (2019)",
+             caption = "Cor relacionado a número de artigos entre os 10% mais citados - Número de Artigos citados",
+             fill = "Número de Artigos Top 10" )
+    })
+    
     
     
     output$plot01 <- renderPlotly({
@@ -53,10 +67,10 @@ shinyServer(function(input, output, session) {
                        Frac_counting=="0")
              
              plot01 <- ggplot(dat01, aes(stringr::str_wrap(Field,width = 10), impact_P, fill=Field, label= round(impact_P, digits = 2), 
-                                         text=paste("impact_P% :",impact_P, "<br>", 
+                                         text=paste("Número de Publicações:",impact_P, "<br>", 
                                                     "Período:", Period))) +
                 geom_col( show.legend = FALSE) + 
-                xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("O número de publicações de uma universidade") + 
+                xlab(paste0("Área Científica", "(",ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"),")")) + ylab("Número de Publicações")+ ggtitle("O número de publicações de uma universidade") + 
                 geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
              #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
              ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -64,14 +78,14 @@ shinyServer(function(input, output, session) {
           {
              dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
                 filter(University==input$options01,
-                       Period=="2015–2018", 
+                       Period==ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"),  
                        Frac_counting=="1")
              
              plot01 <- ggplot(dat01, aes(stringr::str_wrap(Field,width = 10), impact_P, fill=Field, label= round(impact_P, digits = 2), 
-                                         text=paste("impact_P% :",impact_P, "<br>", 
+                                         text=paste("Número de Publicações:",impact_P, "<br>", 
                                                     "Período:", Period))) +
                 geom_col( show.legend = FALSE) + 
-                xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("O número de publicações de uma universidade") + 
+                xlab(paste0("Área Científica", "(",ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"),")")) + ylab("Número de Publicações")+ ggtitle("O número de publicações de uma universidade") + 
                 geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
              #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
              ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -86,11 +100,11 @@ shinyServer(function(input, output, session) {
                        Period=="2015–2018", 
                        Frac_counting=="0") %>% select(1,9,11)
              plot01 <- dat01 %>% 
-                ggplot(aes(x =reorder(Field, impact_P),y = impact_P, fill = University, label= round(impact_P, digits = 2), 
-                           text=paste(University,"<br>","impact_P% :",impact_P, "<br>", 
+                ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), impact_P),y = impact_P, fill = University, label= round(impact_P, digits = 2), 
+                           text=paste(University,"<br>","Número de Publicações:",impact_P, "<br>", 
                                       "Período:", "2015-2018"))) +
                 geom_col(position = "dodge", show.legend = FALSE) +
-                xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("Comparação: O número de publicações de uma universidade") + 
+                xlab(paste0("Área Científica", "(",ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"),")")) + ylab("Número de Publicações")+ ggtitle("Comparação: O número de publicações de uma universidade") + 
                 geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
              ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
              
@@ -101,11 +115,11 @@ shinyServer(function(input, output, session) {
                        Period=="2015–2018", 
                        Frac_counting=="1") %>% select(1,9,11)
              plot01 <- dat01 %>% 
-                ggplot(aes(x =reorder(Field, impact_P),y = impact_P, fill = University, label= round(impact_P, digits = 2), 
-                           text=paste(University,"<br>","impact_P% :",impact_P, "<br>", 
+                ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), impact_P),y = impact_P, fill = University, label= round(impact_P, digits = 2), 
+                           text=paste(University,"<br>","Número de Publicações:",impact_P, "<br>", 
                                       "Período:", "2015-2018"))) +
                 geom_col(position = "dodge", show.legend = FALSE) +
-                xlab("Área Científica (2015–2018)") + ylab("impact_P")+ ggtitle("Comparação: O número de publicações de uma universidade") + 
+                xlab(paste0("Área Científica", "(",ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"),")")) + ylab("Número de Publicações")+ ggtitle("Comparação: O número de publicações de uma universidade") + 
                 geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat01$impact_P)+500))
              ggplotly(plot01, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
           }
@@ -134,6 +148,7 @@ shinyServer(function(input, output, session) {
     
     output$plot13 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha03 == "Null")
             {
              if(input$frac7 == "0")
@@ -142,11 +157,11 @@ shinyServer(function(input, output, session) {
                    filter(University==input$options7,
                           Period=="2015–2018", 
                           Frac_counting=="0")
-                plot13 <- ggplot(dat13, aes(stringr::str_wrap(Field,width = 10), PP_top1, fill=Field, label= round(PP_top1, digits = 2), 
+                plot13 <- ggplot(dat13, aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top1), PP_top1, fill=Field, label= round(PP_top1, digits = 2), 
                                             text=paste("PP Top 1% :",PP_top1, "<br>", 
                                                        "Período:", Period))) +
                    geom_col( show.legend = FALSE) + 
-                   xlab("Área Científica (2015–2018)") + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
+                   xlab(paste0("Área Científica", "(",ifelse(input$AnoImpact_P=="2020","2015–2018","2016–2019"),")")) + ylab("PP_top1")+ ggtitle("A proporção de publicações de uma universidade que pertencem ao 1% mais citado") + 
                    geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat13$PP_top1)+0.001))
                 #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
                 ggplotly(plot13, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
@@ -176,7 +191,7 @@ shinyServer(function(input, output, session) {
                             Period=="2015–2018", 
                             Frac_counting=="0") %>% select(1,9,42)
                   plot13 <- dat13 %>% 
-                     ggplot(aes(x =reorder(Field, PP_top1),y = PP_top1, fill = University, label= round(PP_top1, digits = 2), 
+                     ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top1),y = PP_top1, fill = University, label= round(PP_top1, digits = 2), 
                                 text=paste(University,"<br>","PP_top1% :",PP_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
@@ -191,7 +206,7 @@ shinyServer(function(input, output, session) {
                             Period=="2015–2018", 
                             Frac_counting=="1")%>% select(1,9,42)
                   plot13 <- dat13 %>% 
-                     ggplot(aes(x =reorder(Field, PP_top1),y = PP_top1, fill = University, label= round(PP_top1, digits = 2), 
+                     ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top1),y = PP_top1, fill = University, label= round(PP_top1, digits = 2), 
                                 text=paste(University,"<br>","PP_top1% :",PP_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
@@ -216,14 +231,15 @@ shinyServer(function(input, output, session) {
     })
     
    output$plot3 <- renderPlotly({
+      dados <- dados %>% filter(year==input$AnoImpact_P)
        plot2 <- dados %>% filter(Country=="BRAZIL") %>% 
            filter(University=="UNIVERSIDADE FEDERAL DE VICOSA",
                   Period=="2015–2018", 
                   Frac_counting=="1") %>% 
-           ggplot(aes(Field, impact_P, fill=Field, label= round(impact_P, digits = 2), 
+           ggplot(aes(stringr::str_wrap(Field,width = 10), impact_P, fill=Field, label= round(impact_P, digits = 2), 
                       text=paste("Produção:",impact_P, "<br>", 
                                  "Período:", Period))) +
-           geom_col(aes(Field, impact_P), show.legend = FALSE) + 
+           geom_col(aes(stringr::str_wrap(Field,width = 10), impact_P), show.legend = FALSE) + 
           xlab("Área Científica (2015–2018)") + ylab("Número de Publicações com Impacto") + 
            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw() +
            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
@@ -232,15 +248,15 @@ shinyServer(function(input, output, session) {
    }) 
    
    output$plot11 <- renderPlotly({
-       
+      dados <- dados %>% filter(year==input$AnoImpact_P)
        plot11 <- dados %>% filter(Country=="BRAZIL") %>% 
            filter(University==input$options,
                   Period=="2015–2018", 
                   Frac_counting=="1") %>% 
-           ggplot(aes(Field, impact_P, fill=Field, label= round(impact_P, digits = 2), 
+           ggplot(aes(stringr::str_wrap(Field,width = 10), impact_P, fill=Field, label= round(impact_P, digits = 2), 
                       text=paste("Produção:",impact_P, "<br>", 
                                  "Período:", Period))) +
-           geom_col(aes(Field, impact_P), show.legend = FALSE) + 
+           geom_col(aes(stringr::str_wrap(Field,width = 10), impact_P), show.legend = FALSE) + 
           xlab("Área Científica (2015–2018)") + ylab("Número de Publicações com Impacto") + 
            geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw() +
            theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
@@ -258,6 +274,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot6 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha02 == "Null")
             {
                if(input$frac == "0")
@@ -298,7 +315,7 @@ shinyServer(function(input, output, session) {
                             Period=="2015–2018", 
                             Frac_counting=="0") %>% select(1,9,18)
                   plot6 <- dat6 %>% 
-                     ggplot(aes(x =reorder(Field, P_top1),y = P_top1, fill = University, label= round(P_top1, digits = 2), 
+                     ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top1),y = P_top1, fill = University, label= round(P_top1, digits = 2), 
                                 text=paste(University,"<br>","P_top1% :",P_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
@@ -313,7 +330,7 @@ shinyServer(function(input, output, session) {
                             Period=="2015–2018", 
                             Frac_counting=="1") %>% select(1,9,18)
                   plot6 <- dat6 %>% 
-                     ggplot(aes(x =reorder(Field, P_top1),y = P_top1, fill = University, label= round(P_top1, digits = 2), 
+                     ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top1),y = P_top1, fill = University, label= round(P_top1, digits = 2), 
                                 text=paste(University,"<br>","P_top1% :",P_top1, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
@@ -335,6 +352,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot7 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha04 == "Null")
              {
                 
@@ -377,7 +395,7 @@ shinyServer(function(input, output, session) {
                             Period=="2015–2018", 
                             Frac_counting=="0") %>% select(1,9,19)
                   plot7 <- dat7 %>%  
-                     ggplot(aes(x =reorder(Field, P_top5),y = P_top5, fill = University, label= round(P_top5, digits = 2), 
+                     ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top5),y = P_top5, fill = University, label= round(P_top5, digits = 2), 
                                 text=paste(University,"<br>","P_top5% :",P_top5, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
@@ -392,7 +410,7 @@ shinyServer(function(input, output, session) {
                             Period=="2015–2018", 
                             Frac_counting=="1") %>% select(1,9,19)
                   plot7 <- dat7 %>%  
-                     ggplot(aes(x =reorder(Field, P_top5),y = P_top5, fill = University, label= round(P_top5, digits = 2), 
+                     ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top5),y = P_top5, fill = University, label= round(P_top5, digits = 2), 
                                 text=paste(University,"<br>","P_top5% :",P_top5, "<br>", 
                                            "Período:", "2015-2018"))) +
                      geom_col(position = "dodge", show.legend = FALSE) +
@@ -415,6 +433,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot14 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha05 == "Null")
           {
              if(input$frac8 == "0")
@@ -456,7 +475,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,45)
                 plot14 <- dat14 %>% 
-                   ggplot(aes(x =reorder(Field, PP_top5),y = PP_top5, fill = University, label= round(PP_top5, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top5),y = PP_top5, fill = University, label= round(PP_top5, digits = 2), 
                               text=paste(University,"<br>","PP_top5% :",PP_top5, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -471,7 +490,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,45)
                 plot14 <- dat14 %>% 
-                   ggplot(aes(x =reorder(Field, PP_top5),y = PP_top5, fill = University, label= round(PP_top5, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top5),y = PP_top5, fill = University, label= round(PP_top5, digits = 2), 
                               text=paste(University,"<br>","PP_top5% :",PP_top5, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -494,6 +513,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot8 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha06 ==  "Null")
           {
              if(input$frac3 == "0")
@@ -534,7 +554,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,20)
                 plot8 <- dat8 %>%  
-                   ggplot(aes(x =reorder(Field, P_top10),y = P_top10, fill = University, label= round(P_top10, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top10),y = P_top10, fill = University, label= round(P_top10, digits = 2), 
                               text=paste(University,"<br>","P_top10% :",P_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -548,7 +568,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,20)
                 plot8 <- dat8 %>%  
-                   ggplot(aes(x =reorder(Field, P_top10),y = P_top10, fill = University, label= round(P_top10, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top10),y = P_top10, fill = University, label= round(P_top10, digits = 2), 
                               text=paste(University,"<br>","P_top10% :",P_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -569,6 +589,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot15 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha07 == "Null")
           {
              if(input$frac9 == "0")
@@ -611,7 +632,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,48)
                 plot15 <- dat15 %>% 
-                   ggplot(aes(x =reorder(Field, PP_top10),y = PP_top10, fill = University, label= round(PP_top10, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top10),y = PP_top10, fill = University, label= round(PP_top10, digits = 2), 
                               text=paste(University,"<br>","PP_top10% :",PP_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -625,7 +646,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,48)
                 plot15 <- dat15 %>% 
-                   ggplot(aes(x =reorder(Field, PP_top10),y = PP_top10, fill = University, label= round(PP_top10, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top10),y = PP_top10, fill = University, label= round(PP_top10, digits = 2), 
                               text=paste(University,"<br>","PP_top10% :",PP_top10, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -648,6 +669,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot9 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha08 == "Null")
           {
              if(input$frac4 == "0")
@@ -691,7 +713,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>%  select(1,9,21)
                 plot9 <- dat9 %>% 
-                   ggplot(aes(x =reorder(Field, P_top50),y = P_top50, fill = University, label= round(P_top50, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top50),y = P_top50, fill = University, label= round(P_top50, digits = 2), 
                               text=paste(University,"<br>","P_top50% :",P_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -705,7 +727,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>%  select(1,9,21)
                 plot9 <- dat9 %>% 
-                   ggplot(aes(x =reorder(Field, P_top50),y = P_top50, fill = University, label= round(P_top50, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_top50),y = P_top50, fill = University, label= round(P_top50, digits = 2), 
                               text=paste(University,"<br>","P_top50% :",P_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                       geom_col(position = "dodge", show.legend = FALSE) +
@@ -727,6 +749,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot16 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha09 =="0")
           {
              if(input$frac10 == "0")
@@ -768,7 +791,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,51)
                 plot16 <- dat16 %>%  
-                   ggplot(aes(x =reorder(Field, PP_top50),y = PP_top50, fill = University, label= round(PP_top50, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top50),y = PP_top50, fill = University, label= round(PP_top50, digits = 2), 
                               text=paste(University,"<br>","PP_top50% :",PP_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -782,7 +805,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,51)
                 plot16 <- dat16 %>%  
-                   ggplot(aes(x =reorder(Field, PP_top50),y = PP_top50, fill = University, label= round(PP_top50, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_top50),y = PP_top50, fill = University, label= round(PP_top50, digits = 2), 
                               text=paste(University,"<br>","PP_top50% :",PP_top50, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -804,6 +827,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot10 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha10 ==  "Null")
           {
              if(input$frac5 == "0")
@@ -844,7 +868,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,16)
                 plot10 <- dat10 %>% 
-                   ggplot(aes(x =reorder(Field, TCS),y = TCS, fill = University, label= round(TCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), TCS),y = TCS, fill = University, label= round(TCS, digits = 2), 
                               text=paste(University,"<br>","TCS% :",TCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -858,7 +882,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,16)
                 plot10 <- dat10 %>% 
-                   ggplot(aes(x =reorder(Field, TCS),y = TCS, fill = University, label= round(TCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), TCS),y = TCS, fill = University, label= round(TCS, digits = 2), 
                               text=paste(University,"<br>","TCS% :",TCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -879,6 +903,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot17 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha11 ==  "Null")
           {
              
@@ -923,7 +948,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,17)
                 plot17 <- dat17 %>% 
-                   ggplot(aes(x =reorder(Field, TNCS),y = TNCS, fill = University, label= round(TNCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), TNCS),y = TNCS, fill = University, label= round(TNCS, digits = 2), 
                               text=paste(University,"<br>","TNCS% :",TNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -937,7 +962,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,17)
                 plot17 <- dat17 %>% 
-                   ggplot(aes(x =reorder(Field, TNCS),y = TNCS, fill = University, label= round(TNCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), TNCS),y = TNCS, fill = University, label= round(TNCS, digits = 2), 
                               text=paste(University,"<br>","TNCS% :",TNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -960,6 +985,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot12 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha12 == "Null")
           {
              
@@ -1003,7 +1029,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,36)
                 plot12 <- dat12 %>% 
-                   ggplot(aes(x =reorder(Field, MCS),y = MCS, fill = University, label= round(MCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), MCS),y = MCS, fill = University, label= round(MCS, digits = 2), 
                               text=paste(University,"<br>","MCS% :",MCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -1017,7 +1043,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,36)
                 plot12 <- dat12 %>% 
-                   ggplot(aes(x =reorder(Field, MCS),y = MCS, fill = University, label= round(MCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), MCS),y = MCS, fill = University, label= round(MCS, digits = 2), 
                               text=paste(University,"<br>","MCS% :",MCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -1039,6 +1065,7 @@ shinyServer(function(input, output, session) {
    })
    output$plot18 <- renderPlotly(
        {
+          dados <- dados %>% filter(year==input$AnoImpact_P)
           if(input$optionsescolha13 == "Null"){
              if(input$frac12 == "0")
              {
@@ -1079,7 +1106,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="0") %>% select(1,9,39)
                 plot18 <- dat18 %>% 
-                   ggplot(aes(x =reorder(Field, MNCS),y = MNCS, fill = University, label= round(MNCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), MNCS),y = MNCS, fill = University, label= round(MNCS, digits = 2), 
                               text=paste(University,"<br>","MNCS% :",MNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -1093,7 +1120,7 @@ shinyServer(function(input, output, session) {
                           Period=="2015–2018", 
                           Frac_counting=="1") %>% select(1,9,39)
                 plot18 <- dat18 %>% 
-                   ggplot(aes(x =reorder(Field, MNCS),y = MNCS, fill = University, label= round(MNCS, digits = 2), 
+                   ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), MNCS),y = MNCS, fill = University, label= round(MNCS, digits = 2), 
                               text=paste(University,"<br>","MNCS% :",MNCS, "<br>", 
                                          "Período:", "2015-2018"))) +
                    geom_col(position = "dodge", show.legend = FALSE) +
@@ -1106,6 +1133,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot19 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha14 == "Null")
          {
             dat19 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1126,7 +1154,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options14,input$optionsescolha14),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,22)
             plot19 <- dat19 %>% 
-               ggplot(aes(x =reorder(Field, P_collab),y = P_collab, fill = University, label= round(P_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_collab),y = P_collab, fill = University, label= round(P_collab, digits = 2), 
                           text=paste(University,"<br>","P_collab :",P_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1138,6 +1166,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot35 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha15 == "Null")
          {
             dat35 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1158,7 +1187,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options30,input$optionsescolha15),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,54)
             plot35 <- dat35 %>% 
-               ggplot(aes(x =reorder(Field, PP_collab),y = PP_collab, fill = University, label= round(PP_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_collab),y = PP_collab, fill = University, label= round(PP_collab, digits = 2), 
                           text=paste(University,"<br>","PP_collab :",PP_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1171,6 +1200,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot20 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha16 == "Null")
          {
             
@@ -1192,7 +1222,7 @@ shinyServer(function(input, output, session) {
                filter(University%in% c(input$options15,input$optionsescolha16),
                       Period=="2015–2018", Frac_counting == "0") %>%  select(1,9,23)
             plot20 <- dat20 %>% 
-               ggplot(aes(x =reorder(Field, P_int_collab),y = P_int_collab, fill = University, label= round(P_int_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_int_collab),y = P_int_collab, fill = University, label= round(P_int_collab, digits = 2), 
                           text=paste(University,"<br>","P_int_collab :",P_int_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1204,6 +1234,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot36 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha17 == "Null")
          {
             dat36 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1224,7 +1255,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options31,input$optionsescolha17),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,57)
             plot36 <- dat36 %>% 
-               ggplot(aes(x =reorder(Field, PP_int_collab),y = PP_int_collab, fill = University, label= round(PP_int_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_int_collab),y = PP_int_collab, fill = University, label= round(PP_int_collab, digits = 2), 
                           text=paste(University,"<br>","PP_int_collab :",PP_int_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1237,6 +1268,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot21 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha18 == "Null")
          {
             dat21 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1256,7 +1288,7 @@ shinyServer(function(input, output, session) {
                filter(University  %in% c(input$options16,input$optionsescolha18),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,24)
             plot21 <- dat21 %>% 
-               ggplot(aes(x =reorder(Field, P_industry_collab),y = P_industry_collab, fill = University, label= round(P_industry_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_industry_collab),y = P_industry_collab, fill = University, label= round(P_industry_collab, digits = 2), 
                           text=paste(University,"<br>","P_industry_collab :",P_industry_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1270,6 +1302,7 @@ shinyServer(function(input, output, session) {
    
    output$plot37 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha19 == "Null")
          {
             dat37 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1290,7 +1323,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options32,input$optionsescolha19),
                       Period=="2015–2018", Frac_counting == "0") %>%  select(1,9,60)
             plot37 <- dat37 %>% 
-               ggplot(aes(x =reorder(Field, PP_industry_collab),y = PP_industry_collab, fill = University, label= round(PP_industry_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_industry_collab),y = PP_industry_collab, fill = University, label= round(PP_industry_collab, digits = 2), 
                           text=paste(University,"<br>","PP_industry_collab :",PP_industry_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1304,6 +1337,7 @@ shinyServer(function(input, output, session) {
    
    output$plot22 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha20 == "Null")
          {
             dat22 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1324,7 +1358,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options17,input$optionsescolha20),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,25)
             plot22 <- dat22 %>% 
-               ggplot(aes(x =reorder(Field, P_short_dist_collab),y = P_short_dist_collab, fill = University, label= round(P_short_dist_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_short_dist_collab),y = P_short_dist_collab, fill = University, label= round(P_short_dist_collab, digits = 2), 
                           text=paste(University,"<br>","P_short_dist_collab :",P_short_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1336,6 +1370,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot38 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha21 == "Null")
          {
             dat38 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1356,7 +1391,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options33,input$optionsescolha21),
                       Period=="2015–2018", Frac_counting == "0") %>%  select(1,9,63)
             plot38 <- dat38 %>% 
-               ggplot(aes(x =reorder(Field, PP_short_dist_collab),y = PP_short_dist_collab, fill = University, label= round(PP_short_dist_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_short_dist_collab),y = PP_short_dist_collab, fill = University, label= round(PP_short_dist_collab, digits = 2), 
                           text=paste(University,"<br>","PP_short_dist_collab :",PP_short_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1368,6 +1403,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot23 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha22 == "Null")
          {
             dat23 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1389,7 +1425,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options18,input$optionsescolha22),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,26)
             plot23 <- dat23 %>% 
-               ggplot(aes(x =reorder(Field, P_long_dist_collab),y = P_long_dist_collab, fill = University, label= round(P_long_dist_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_long_dist_collab),y = P_long_dist_collab, fill = University, label= round(P_long_dist_collab, digits = 2), 
                           text=paste(University,"<br>","P_long_dist_collab :",P_long_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1402,6 +1438,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot39 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha23 == "Null")
          {
             dat39 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1422,7 +1459,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options34,input$optionsescolha23),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,66)
             plot39 <- dat39 %>% 
-               ggplot(aes(x =reorder(Field, PP_long_dist_collab),y = PP_long_dist_collab, fill = University, label= round(PP_long_dist_collab, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_long_dist_collab),y = PP_long_dist_collab, fill = University, label= round(PP_long_dist_collab, digits = 2), 
                           text=paste(University,"<br>","PP_long_dist_collab :",PP_long_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1434,6 +1471,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot24 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha24 ==  "Null")
          {
             dat24 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1454,7 +1492,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options19,input$optionsescolha24),
                       Period=="2015–2018", Frac_counting ==  "0") %>% select(1,9,27)
             plot24 <- dat24 %>% 
-               ggplot(aes(x =reorder(Field, P_OA),y = P_OA, fill = University, label= round(P_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_OA),y = P_OA, fill = University, label= round(P_OA, digits = 2), 
                           text=paste(University,"<br>","P_OA :",P_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1466,6 +1504,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot40 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha25 == "Null")
          {
             dat40 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1486,7 +1525,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options35,input$optionsescolha25),
                       Period=="2015–2018", Frac_counting ==  "0") %>% select(1,9,69)
             plot40 <- dat40 %>% 
-               ggplot(aes(x =reorder(Field, PP_OA),y = PP_OA, fill = University, label= round(PP_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_OA),y = PP_OA, fill = University, label= round(PP_OA, digits = 2), 
                           text=paste(University,"<br>","PP_OA :",PP_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1499,6 +1538,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot25 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha26 == "Null")
          {
             dat25 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1519,7 +1559,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options20,input$optionsescolha26),
                       Period=="2015–2018", Frac_counting ==  "0") %>% select(1,9,28)
             plot25 <- dat25 %>% 
-               ggplot(aes(x =reorder(Field, P_gold_OA),y = P_gold_OA, fill = University, label= round(P_gold_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_gold_OA),y = P_gold_OA, fill = University, label= round(P_gold_OA, digits = 2), 
                           text=paste(University,"<br>","P_gold_OA :",P_gold_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1531,6 +1571,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot41 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha27 == "Null")
          {
             dat41 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1551,7 +1592,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options36,input$optionsescolha27),
                       Period=="2015–2018", Frac_counting ==  "0") %>% select (1,9,72)
             plot41 <- dat41 %>% 
-               ggplot(aes(x =reorder(Field, PP_gold_OA),y = PP_gold_OA, fill = University, label= round(PP_gold_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_gold_OA),y = PP_gold_OA, fill = University, label= round(PP_gold_OA, digits = 2), 
                           text=paste(University,"<br>","PP_gold_OA :",PP_gold_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1563,6 +1604,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot26 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha28 == "Null")
          {
             dat26 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1584,7 +1626,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options21,input$optionsescolha28),
                       Period=="2015–2018", Frac_counting ==  "0") %>% select(1,9,29)
             plot26 <- dat26 %>% 
-               ggplot(aes(x =reorder(Field, P_hybrid_OA),y = P_hybrid_OA, fill = University, label= round(P_hybrid_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_hybrid_OA),y = P_hybrid_OA, fill = University, label= round(P_hybrid_OA, digits = 2), 
                           text=paste(University,"<br>","P_hybrid_OA :",P_hybrid_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1596,6 +1638,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot42 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha29 == "Null")
          {
             dat42 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1616,7 +1659,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options37,input$optionsescolha29),
                       Period=="2015–2018", Frac_counting ==  "0") %>% select(1,9,75)
             plot42 <- dat42 %>% 
-               ggplot(aes(x =reorder(Field, PP_hybrid_OA),y = PP_hybrid_OA, fill = University, label= round(PP_hybrid_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_hybrid_OA),y = PP_hybrid_OA, fill = University, label= round(PP_hybrid_OA, digits = 2), 
                           text=paste(University,"<br>","PP_hybrid_OA :",PP_hybrid_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1628,6 +1671,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot27 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha30 == "Null")
          {
             dat27 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1647,7 +1691,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options22,input$optionsescolha30),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,30)
             plot27 <- dat27 %>% 
-               ggplot(aes(x =reorder(Field, P_bronze_OA),y = P_bronze_OA, fill = University, label= round(P_bronze_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_bronze_OA),y = P_bronze_OA, fill = University, label= round(P_bronze_OA, digits = 2), 
                           text=paste(University,"<br>","P_bronze_OA :",P_bronze_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1659,6 +1703,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot43 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha31 == "Null")
          {
             dat43 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1679,7 +1724,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options38,input$optionsescolha31),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,78)
             plot43 <- dat43 %>% 
-               ggplot(aes(x =reorder(Field, PP_bronze_OA),y = PP_bronze_OA, fill = University, label= round(PP_bronze_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_bronze_OA),y = PP_bronze_OA, fill = University, label= round(PP_bronze_OA, digits = 2), 
                           text=paste(University,"<br>","PP_bronze_OA :",PP_bronze_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1691,6 +1736,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot28 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha32 == "Null")
          {
             dat28 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1711,7 +1757,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options23,input$optionsescolha32),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,31)
             plot28 <-  dat28 %>% 
-               ggplot(aes(x =reorder(Field, P_green_OA),y = P_green_OA, fill = University, label= round(P_green_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_green_OA),y = P_green_OA, fill = University, label= round(P_green_OA, digits = 2), 
                           text=paste(University,"<br>","P_green_OA :",P_green_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1724,6 +1770,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot44 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha33 == "Null")
          {
             dat44 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1744,7 +1791,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options39,input$optionsescolha33),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,81)
             plot44 <-  dat44 %>% 
-               ggplot(aes(x =reorder(Field, PP_green_OA),y = PP_green_OA, fill = University, label= round(PP_green_OA, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_green_OA),y = PP_green_OA, fill = University, label= round(PP_green_OA, digits = 2), 
                           text=paste(University,"<br>","PP_green_OA :",PP_green_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1756,6 +1803,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot29 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha34 == "Null")
          {
             dat29 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1776,7 +1824,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options24,input$optionsescolha34),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,32)
             plot29 <-  dat29 %>% 
-               ggplot(aes(x =reorder(Field, P_OA_unknown),y = P_OA_unknown, fill = University, label= round(P_OA_unknown, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), P_OA_unknown),y = P_OA_unknown, fill = University, label= round(P_OA_unknown, digits = 2), 
                           text=paste(University,"<br>","P_OA_unknown :",P_OA_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1789,6 +1837,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot45 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha35 == "Null")
          {
             dat45 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1809,7 +1858,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options40,input$optionsescolha35),
                       Period=="2015–2018", Frac_counting == "0") %>%  select(1,9,84)
             plot45 <- dat45 %>% 
-               ggplot(aes(x =reorder(Field, PP_OA_unknown),y = PP_OA_unknown, fill = University, label= round(PP_OA_unknown, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PP_OA_unknown),y = PP_OA_unknown, fill = University, label= round(PP_OA_unknown, digits = 2), 
                           text=paste(University,"<br>","PP_OA_unknown :",PP_OA_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1821,6 +1870,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot30 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha36 == "Null")
          {
             dat30 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1841,7 +1891,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options25,input$optionsescolha36),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,14)
             plot30 <- dat30 %>% 
-               ggplot(aes(x =reorder(Field, gender_A),y = gender_A, fill = University, label= round(gender_A, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), gender_A),y = gender_A, fill = University, label= round(gender_A, digits = 2), 
                           text=paste(University,"<br>","gender_A :",gender_A, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1853,6 +1903,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot31 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha37 == "Null")
          {
             dat31 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1873,7 +1924,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options26,input$optionsescolha37),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,15)
             plot31 <- dat31 %>% 
-               ggplot(aes(x =reorder(Field, gender_A_MF),y = gender_A_MF, fill = University, label= round(gender_A_MF, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), gender_A_MF),y = gender_A_MF, fill = University, label= round(gender_A_MF, digits = 2), 
                           text=paste(University,"<br>","gender_A_MF :",gender_A_MF, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1885,6 +1936,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot32 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha38 == "Null")
          {
             dat32 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1905,7 +1957,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options27,input$optionsescolha38),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,33)
             plot32 <- dat32 %>% 
-               ggplot(aes(x =reorder(Field, A_gender_unknown),y = A_gender_unknown, fill = University, label= round(A_gender_unknown, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), A_gender_unknown),y = A_gender_unknown, fill = University, label= round(A_gender_unknown, digits = 2), 
                           text=paste(University,"<br>","A_gender_unknown :",A_gender_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1917,6 +1969,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot46 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha39 == "Null")
          {
             dat46 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1937,7 +1990,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options41,input$optionsescolha39),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,87)
             plot46 <- dat46 %>% 
-               ggplot(aes(x =reorder(Field, PA_gender_unknown),y = PA_gender_unknown, fill = University, label= round(PA_gender_unknown, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PA_gender_unknown),y = PA_gender_unknown, fill = University, label= round(PA_gender_unknown, digits = 2), 
                           text=paste(University,"<br>","PA_gender_unknown :",PA_gender_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1950,6 +2003,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot33 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha40 == "Null")
          {
             dat33 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -1970,7 +2024,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options28,input$optionsescolha40),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,34)
             plot33 <- dat33 %>% 
-               ggplot(aes(x =reorder(Field, A_M),y = A_M, fill = University, label= round(A_M, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), A_M),y = A_M, fill = University, label= round(A_M, digits = 2), 
                           text=paste(University,"<br>","A_M :",A_M, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -1982,6 +2036,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot47 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha41 == "Null")
          {
             dat47 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -2002,7 +2057,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options42,input$optionsescolha41),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,88)
             plot47 <- dat47 %>% 
-               ggplot(aes(x =reorder(Field, PA_M),y = PA_M, fill = University, label= round(PA_M, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PA_M),y = PA_M, fill = University, label= round(PA_M, digits = 2), 
                           text=paste(University,"<br>","PA_M :",PA_M, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -2015,6 +2070,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot34 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha42 == "Null")
          {
             dat34 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -2035,7 +2091,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options44,input$optionsescolha42),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,35)
             plot34 <-  dat34 %>% 
-               ggplot(aes(x =reorder(Field, A_F),y = A_F, fill = University, label= round(A_F, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), A_F),y = A_F, fill = University, label= round(A_F, digits = 2), 
                           text=paste(University,"<br>","A_F :",A_F, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
@@ -2048,6 +2104,7 @@ shinyServer(function(input, output, session) {
    )
    output$plot48 <- renderPlotly(
       {
+         dados <- dados %>% filter(year==input$AnoImpact_P)
          if(input$optionsescolha43 == "Null")
          {
             dat48 <-dados %>% filter(Country=="BRAZIL") %>% 
@@ -2068,7 +2125,7 @@ shinyServer(function(input, output, session) {
                filter(University %in% c(input$options43,input$optionsescolha43),
                       Period=="2015–2018", Frac_counting == "0") %>% select(1,9,89)
             plot48 <- dat48 %>%  
-               ggplot(aes(x =reorder(Field, PA_F),y = PA_F, fill = University, label= round(PA_F, digits = 2), 
+               ggplot(aes(x =reorder(stringr::str_wrap(Field,width = 10), PA_F),y = PA_F, fill = University, label= round(PA_F, digits = 2), 
                           text=paste(University,"<br>","PA_F :",PA_F, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +

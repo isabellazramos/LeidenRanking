@@ -14,6 +14,7 @@ library("flexdashboard")
 library("tidyverse")
 library("ggthemes")
 library("treemap")
+library("treemapify")
 library("leaflet")
 library("readxl")
 library("readODS")
@@ -30,7 +31,10 @@ options(DT.options = list(scrollY="300px",scrollX="300px",
 library("shinydashboard")
 library("shinyWidgets") # nicer inputs
 ##############################################################################
-
+names(aggSetor) <- c("university", "impact_P", "P_top10", "escala")
+aggSetor <-data%>%filter(date==(last(data$date)-1))%>%group_by(state) %>% 
+  summarise(quantidade = sum(deaths), confirmedM = mean(confirmed))
+aggSetor$escala <- scale(aggSetor$confirmedM)
 ## Define font to be used later
 f1 = list(family = "Arial", size = 10, color = "rgb(30,30,30)")
 
@@ -138,3 +142,7 @@ InstName2 <- (Instituicoes=c("Não Selecionada","UFLA"   ="FEDERAL UNIVERSITY OF
 
 #pop <- data.table::fread("Populacao.csv")
 #names(pop) <- c("UF_EXERCICIO", "POPULACAO", "REGIAO")
+
+aggSetor <-brazil2%>%filter(Per_End=="2019", Frac_counting=="1", Field=="ALL SCIENCES") %>% 
+  select(University, impact_P, P_top10)
+aggSetor$escala <- scale(aggSetor$P_top10)
