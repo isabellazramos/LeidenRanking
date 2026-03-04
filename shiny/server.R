@@ -1228,20 +1228,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot19 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_collab)
          if(input$optionsescolha14 == "Null")
          {
             dat19 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options14,
-                      Period=="2015–2018", Frac_counting == "0") 
-            plot19 <- ggplot(dat19,aes(stringr::str_wrap(Field,width = 10), P_collab, fill=Field, label= round(P_collab, digits = 2), 
-                                       text=paste("P_collab :",P_collab, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_collab")+ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais outras organizações") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat19$P_collab)+1000))
+                             Period==ifelse(input$AnoP_collab=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot19 <- ggplot(dat19, aes(stringr::str_wrap(Field,width = 10), P_collab, fill=Field, label= round(P_collab, digits = 2), 
+                                        text=paste("P_collab:",P_collab, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais outras organizações") + 
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat19$P_collab)+500)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot19, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot19, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -1253,9 +1256,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_collab :",P_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_collab")+ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais outras organizações")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat19$P_collab)+1000))
-            ggplotly(plot19, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais outras organizações") + 
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat19$P_collab)+500)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot19, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1295,21 +1300,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot20 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_int_collab)
          if(input$optionsescolha16 == "Null")
          {
-            
             dat20 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options15,
-                      Period=="2015–2018", Frac_counting == "0")
+                             Period==ifelse(input$AnoP_int_collab=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
             plot20 <- ggplot(dat20, aes(stringr::str_wrap(Field,width = 10), P_int_collab, fill=Field, label= round(P_int_collab, digits = 2), 
-                                        text=paste("P_int_collab :",P_int_collab, "<br>", 
+                                        text=paste("P_int_collab:",P_int_collab, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_int_collab") + ggtitle("O número de publicações de uma universidade que foram coautoria de dois ou mais países")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat20$P_int_collab)+1000))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_int_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_int_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de dois ou mais países") + 
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat20$P_int_collab)+500)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot20, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot20, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else 
          {
@@ -1321,9 +1328,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_int_collab :",P_int_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_int_collab")+ ggtitle("Comparação: O número de publicações de uma universidade que foram coautoria de dois ou mais países")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat20$P_int_collab)+1000))
-            ggplotly(plot20, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_int_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_int_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de dois ou mais países") + 
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat20$P_int_collab)+500)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot20, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1363,20 +1372,24 @@ shinyServer(function(input, output, session) {
    )
    output$plot21 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_industry_collab)
          if(input$optionsescolha18 == "Null")
          {
             dat21 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options16,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot21 <- ggplot(dat21,aes(stringr::str_wrap(Field,width = 10), P_industry_collab, fill=Field, label= round(P_industry_collab, digits = 2), 
-                                       text=paste("P_industry_collab :",P_industry_collab, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_industry_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat21$P_industry_collab)+20))
+                             Period==ifelse(input$AnoP_int_collab=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot21 <- ggplot(dat21, aes(stringr::str_wrap(Field,width = 10), P_industry_collab, fill=Field, label= round(P_industry_collab, digits = 2), 
+                                        text=paste("P_industry_collab:",P_industry_collab, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_industry_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_industry_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais") + 
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat21$P_industry_collab)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot21, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot21, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
+            
          }else
          {
             dat21 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
@@ -1387,9 +1400,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_industry_collab :",P_industry_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_industry_collab")+ ggtitle("Comparação: O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat21$P_industry_collab)+0.05))
-            ggplotly(plot21, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_industry_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_industry_collab")+ ggtitle("O número de publicações de uma universidade que foram coautoria de uma ou mais organizações industriais") + 
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat21$P_industry_collab)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot21, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
          
       }
@@ -1432,20 +1447,23 @@ shinyServer(function(input, output, session) {
    
    output$plot22 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_short_dist_collab)
          if(input$optionsescolha20 == "Null")
          {
             dat22 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options17,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot22 <- ggplot(dat22, aes(stringr::str_wrap(Field,width = 10), P_short_dist_collab, fill=Field, label= round(P_short_dist_collab, digits = 2), 
-                                        text=paste("P_short_dist_collab :",P_short_dist_collab, "<br>", 
+                             Period==ifelse(input$AnoP_short_dist_collab=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot22 <- ggplot(dat22, aes(stringr::str_wrap(Field,width = 10), P_industry_collab, fill=Field, label= round(P_short_dist_collab, digits = 2), 
+                                        text=paste("P_short_dist_collab:",P_short_dist_collab, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_short_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+20))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_short_dist_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_short_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.") +
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot22, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot22, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -1457,9 +1475,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_short_dist_collab :",P_short_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_short_dist_collab")+ ggtitle("Comparação: O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+0.05))
-            ggplotly(plot22, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_short_dist_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_short_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração inferior a 100 km.") +
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat22$P_short_dist_collab)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot22, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1498,21 +1518,24 @@ shinyServer(function(input, output, session) {
    )
    output$plot23 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_long_dist_collab)
          if(input$optionsescolha22 == "Null")
          {
             dat23 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
-               dplyr::filter(University==input$options18,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot23 <- ggplot(dat23,aes(stringr::str_wrap(Field,width = 10), P_long_dist_collab, fill=Field, label= round(P_long_dist_collab, digits = 2), 
-                                       text=paste("P_long_dist_collab :",P_long_dist_collab, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_long_dist_collab") + ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat23$P_long_dist_collab)+1000))
-            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot23, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               dplyr::filter(University==input$options17,
+                             Period==ifelse(input$AnoP_long_dist_collab=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
             
+            plot23 <- ggplot(dat23, aes(stringr::str_wrap(Field,width = 10), P_industry_collab, fill=Field, label= round(P_long_dist_collab, digits = 2), 
+                                        text=paste("P_long_dist_collab:",P_long_dist_collab, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_long_dist_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_long_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat23$P_long_dist_collab)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot23, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
+         
          }
          else
          {
@@ -1524,9 +1547,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_long_dist_collab :",P_long_dist_collab, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_long_dist_collab")+ ggtitle("Comparação: O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat23$P_long_dist_collab)+0.05))
-            ggplotly(plot23, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_long_dist_collab=="2020","2015–2018","2016–2019"),")")) + ylab("P_long_dist_collab")+ ggtitle("O número de publicações de uma universidade com uma distância geográfica de colaboração de mais de 5000 km.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat23$P_long_dist_collab)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot23, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }
       }
@@ -1566,20 +1591,24 @@ shinyServer(function(input, output, session) {
    )
    output$plot24 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_OA)
          if(input$optionsescolha24 ==  "Null")
          {
             dat24 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options19,
-                      Period=="2015–2018", Frac_counting ==  "0") 
-            plot24 <- ggplot(dat24,aes(stringr::str_wrap(Field,width = 10), P_OA, fill=Field, label= round(P_OA, digits = 2), 
-                                       text=paste("P_OA :",P_OA, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_OA") + ggtitle("O número de publicações de acesso aberto de uma universidade.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat24$P_OA)+20))
+                             Period==ifelse(input$AnoP_OA=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot24 <- ggplot(dat24, aes(stringr::str_wrap(Field,width = 10), P_OA, fill=Field, label= round(P_OA, digits = 2), 
+                                        text=paste("P_OA:",P_OA, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_OA")+ ggtitle("O número de publicações de acesso aberto de uma universidade.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat24$P_OA)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot24, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot24, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
+
             
          }else
          {
@@ -1591,9 +1620,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_OA :",P_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_OA")+ ggtitle("Comparação: O número de publicações de acesso aberto de uma universidade.")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat24$P_OA)+0.05))
-            ggplotly(plot24, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_OA")+ ggtitle("O número de publicações de acesso aberto de uma universidade.")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat24$P_OA)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot24, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1633,20 +1664,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot25 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_gold_OA)
          if(input$optionsescolha26 == "Null")
          {
             dat25 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options20,
-                      Period=="2015–2018", Frac_counting ==  "0")
-            plot25 <-  ggplot(dat25,aes(stringr::str_wrap(Field,width = 10), P_gold_OA, fill=Field, label= round(P_gold_OA, digits = 2), 
-                                        text=paste("P_gold_OA :",P_gold_OA, "<br>", 
+                             Period==ifelse(input$AnoP_gold_OA=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot25 <- ggplot(dat25, aes(stringr::str_wrap(Field,width = 10), P_gold_OA, fill=Field, label= round(P_gold_OA, digits = 2), 
+                                        text=paste("P_gold_OA:",P_gold_OA, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_gold_OA")+ ggtitle("O número de ouro em publicações de acesso aberto de uma universidade") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat25$P_gold_OA)+20))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_gold_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_gold_OA")+ ggtitle("O número de ouro em publicações de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat25$P_gold_OA)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot25, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot25, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -1658,9 +1692,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_gold_OA :",P_gold_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_gold_OA")+ ggtitle("Comparação: O número de ouro em publicações de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat25$P_gold_OA)+0.05))
-            ggplotly(plot25, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_gold_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_gold_OA")+ ggtitle("O número de ouro em publicações de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat25$P_gold_OA)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot25, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1699,20 +1735,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot26 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_hybrid_OA)
          if(input$optionsescolha28 == "Null")
          {
             dat26 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options21,
-                      Period=="2015–2018", Frac_counting ==  "0")
+                             Period==ifelse(input$AnoP_hybrid_OA=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
             plot26 <- ggplot(dat26, aes(stringr::str_wrap(Field,width = 10), P_hybrid_OA, fill=Field, label= round(P_hybrid_OA, digits = 2), 
-                                        text=paste("P_hybrid_OA :",P_hybrid_OA, "<br>", 
+                                        text=paste("P_hybrid_OA:",P_hybrid_OA, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_hybrid_OA") + ggtitle("O número de publicações híbridas de acesso aberto de uma universidade") +
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat26$P_hybrid_OA)+20))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_hybrid_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_hybrid_OA")+ ggtitle("O número de publicações híbridas de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat26$P_hybrid_OA)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot26, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot26, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
             
          }else
@@ -1725,9 +1764,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_hybrid_OA :",P_hybrid_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_hybrid_OA")+ ggtitle("Comparação: O número de publicações híbridas de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat26$P_hybrid_OA)+0.05))
-            ggplotly(plot26, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_hybrid_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_hybrid_OA")+ ggtitle("O número de publicações híbridas de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat26$P_hybrid_OA)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot26, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1766,20 +1807,24 @@ shinyServer(function(input, output, session) {
    )
    output$plot27 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_bronze_OA)
          if(input$optionsescolha30 == "Null")
          {
             dat27 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options22,
-                      Period=="2015–2018", Frac_counting == "0") 
-            plot27 <- ggplot(dat27,aes(stringr::str_wrap(Field,width = 10), P_bronze_OA, fill=Field, label= round(P_bronze_OA, digits = 2), 
-                                       text=paste("P_bronze_OA :",P_bronze_OA, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_bronze_OA") + ggtitle("O número de publicações de acesso aberto em bronze de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat27$P_bronze_OA)+20))
+                             Period==ifelse(input$AnoP_bronze_OA=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot27 <- ggplot(dat27, aes(stringr::str_wrap(Field,width = 10), P_hybrid_OA, fill=Field, label= round(P_bronze_OA, digits = 2), 
+                                        text=paste("P_bronze_OA:",P_bronze_OA, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_bronze_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_bronze_OA")+ ggtitle("O número de publicações de acesso aberto em bronze de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat27$P_bronze_OA)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot27, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot27, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
+
             
          }else{
             dat27 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
@@ -1790,9 +1835,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_bronze_OA :",P_bronze_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_bronze_OA")+  ggtitle("Comparação: O número de publicações de acesso aberto em bronze de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat27$P_bronze_OA)+0.05))
-            ggplotly(plot27, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_bronze_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_bronze_OA")+ ggtitle("O número de publicações de acesso aberto em bronze de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat27$P_bronze_OA)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot27, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -1831,20 +1878,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot28 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_green_OA)
          if(input$optionsescolha32 == "Null")
          {
             dat28 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options23,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot28 <-  ggplot(dat28,aes(stringr::str_wrap(Field,width = 10), P_green_OA, fill=Field, label= round(P_green_OA, digits = 2), 
-                                        text=paste("P_green_OA :",P_green_OA, "<br>", 
+                             Period==ifelse(input$AnoP_green_OA=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot28 <- ggplot(dat28, aes(stringr::str_wrap(Field,width = 10), P_green_OA, fill=Field, label= round(P_green_OA, digits = 2), 
+                                        text=paste("P_green_OA:",P_green_OA, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_green_OA") + ggtitle("O número de publicações verdes de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat28$P_green_OA)+20))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_green_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_green_OA")+ ggtitle("O número de publicações verdes de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat28$P_green_OA)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot28, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot28, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -1856,9 +1906,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_green_OA :",P_green_OA, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_green_OA")+ ggtitle("Comparação: O número de publicações verdes de acesso aberto de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat28$P_green_OA)+0.05))
-            ggplotly(plot28, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_green_OA=="2020","2015–2018","2016–2019"),")")) + ylab("P_green_OA")+ ggtitle("O número de publicações verdes de acesso aberto de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat28$P_green_OA)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot28, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
          
       }
@@ -1898,20 +1950,24 @@ shinyServer(function(input, output, session) {
    )
    output$plot29 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoP_OA_unknown)
          if(input$optionsescolha34 == "Null")
          {
             dat29 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options24,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot29 <-  ggplot(dat29,aes(stringr::str_wrap(Field,width = 10), P_OA_unknown, fill=Field, label= round(P_OA_unknown, digits = 2), 
-                                        text=paste("P_OA_unknown :",P_OA_unknown, "<br>", 
+                             Period==ifelse(input$AnoP_OA_unknown=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot29 <- ggplot(dat29, aes(stringr::str_wrap(Field,width = 10), P_OA_unknown, fill=Field, label= round(P_OA_unknown, digits = 2), 
+                                        text=paste("P_OA_unknown:",P_OA_unknown, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("P_OA_unknown")+ ggtitle("O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) +theme_bw()+ylim(c(0,max(dat29$P_OA_unknown)+20))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_OA_unknown=="2020","2015–2018","2016–2019"),")")) + ylab("P_OA_unknown")+ ggtitle("O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat29$P_OA_unknown)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot29, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot29, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
+
             
          }else
          {
@@ -1923,9 +1979,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","P_OA_unknown :",P_OA_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("P_OA_unknown")+ ggtitle("Comparação: O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat29$P_OA_unknown)+0.05))
-            ggplotly(plot29, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoP_OA_unknown=="2020","2015–2018","2016–2019"),")")) + ylab("P_OA_unknown")+ ggtitle("O número de publicações de uma universidade para as quais o status de acesso aberto é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat29$P_OA_unknown)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot29, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
          
       }
@@ -1965,20 +2023,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot30 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$Anogender_A)
          if(input$optionsescolha36 == "Null")
          {
             dat30 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options25,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot30 <- ggplot(dat30,aes(stringr::str_wrap(Field,width = 10), gender_A, fill=Field, label= round(gender_A, digits = 2), 
-                                       text=paste("gender_A :",gender_A, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("gender_A") +ggtitle("O número total de autorias de uma universidade") +
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat30$gender_A)+200))
+                             Period==ifelse(input$Anogender_A=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot30 <- ggplot(dat30, aes(stringr::str_wrap(Field,width = 10), gender_A, fill=Field, label= round(gender_A, digits = 2), 
+                                        text=paste("gender_A:",gender_A, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$Anogender_A=="2020","2015–2018","2016–2019"),")")) + ylab("gender_A")+ ggtitle("O número total de autorias de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat30$gender_A)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot30, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot30, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -1990,28 +2051,33 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","gender_A :",gender_A, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("gender_A")+ggtitle("Comparação: O número total de autorias de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat30$gender_A)+0.05))
-            ggplotly(plot30, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$Anogender_A=="2020","2015–2018","2016–2019"),")")) + ylab("gender_A")+ ggtitle("O número total de autorias de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat30$gender_A)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot30, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
    output$plot31 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$Anogender_A_MF)
          if(input$optionsescolha37 == "Null")
          {
             dat31 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options26,
-                      Period=="2015–2018", Frac_counting == "0")
+                             Period==ifelse(input$Anogender_A_MF=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
             plot31 <- ggplot(dat31, aes(stringr::str_wrap(Field,width = 10), gender_A_MF, fill=Field, label= round(gender_A_MF, digits = 2), 
-                                        text=paste("gender_A_MF :",gender_A_MF, "<br>", 
+                                        text=paste("gender_A_MF:",gender_A_MF, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("gender_A_MF")+ ggtitle("O número de autorias de uma universidade pelas quais o gênero é conhecido") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat31$gender_A_MF)+200))
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$Anogender_A_MF=="2020","2015–2018","2016–2019"),")")) + ylab("gender_A_MF")+ ggtitle("O número de autorias de uma universidade pelas quais o gênero é conhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat31$gender_A_MF)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot31, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot31, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -2023,28 +2089,33 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","gender_A_MF :",gender_A_MF, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("gender_A_MF")+ggtitle("Comparação: O número de autorias de uma universidade pelas quais o gênero é conhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat31$gender_A_MF)+0.05))
-            ggplotly(plot31, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$Anogender_A_MF=="2020","2015–2018","2016–2019"),")")) + ylab("gender_A_MF")+ ggtitle("O número de autorias de uma universidade pelas quais o gênero é conhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat31$gender_A_MF)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot31, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
    output$plot32 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoA_gender_unknown)
          if(input$optionsescolha38 == "Null")
          {
             dat32 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options27,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot32 <-ggplot(dat32, aes(stringr::str_wrap(Field,width = 10), A_gender_unknown, fill=Field, label= round(A_gender_unknown, digits = 2), 
-                                       text=paste("A_gender_unknown :",A_gender_unknown, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("A_gender_unknown") + ggtitle("O número de autorias de uma universidade para as quais o gênero é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat32$A_gender_unknown)+30))
+                             Period==ifelse(input$AnoA_gender_unknown=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot32 <- ggplot(dat32, aes(stringr::str_wrap(Field,width = 10), A_gender_unknown, fill=Field, label= round(A_gender_unknown, digits = 2), 
+                                        text=paste("A_gender_unknown:",A_gender_unknown, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoA_gender_unknown=="2020","2015–2018","2016–2019"),")")) + ylab("A_gender_unknown")+ ggtitle("O número de autorias de uma universidade para as quais o gênero é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat32$A_gender_unknown)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot32, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot32, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -2056,9 +2127,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","A_gender_unknown :",A_gender_unknown, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("A_gender_unknown")+ggtitle("Comparação: O número de autorias de uma universidade para as quais o gênero é desconhecido")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat32$A_gender_unknown)+0.05))
-            ggplotly(plot32, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoA_gender_unknown=="2020","2015–2018","2016–2019"),")")) + ylab("A_gender_unknown")+ ggtitle("O número de autorias de uma universidade para as quais o gênero é desconhecido")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat32$A_gender_unknown)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot32, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -2098,20 +2171,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot33 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoA_M)
          if(input$optionsescolha40 == "Null")
          {
             dat33 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options28,
-                      Period=="2015–2018", Frac_counting == "0") 
-            plot33 <- ggplot(dat33,aes(stringr::str_wrap(Field,width = 10), A_M, fill=Field, label= round(A_M, digits = 2), 
-                                       text=paste("A_M :",A_M, "<br>", 
-                                                  "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("A_M")+ ggtitle("O número de autorias masculinas de uma universidade") + 
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat33$A_M)+150))
+                             Period==ifelse(input$AnoA_M=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot33 <- ggplot(dat33, aes(stringr::str_wrap(Field,width = 10), A_M, fill=Field, label= round(A_M, digits = 2), 
+                                        text=paste("A_M:",A_M, "<br>", 
+                                                   "Período:", Period))) +
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoA_M=="2020","2015–2018","2016–2019"),")")) + ylab("A_M")+ ggtitle("O número de autorias masculinas de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat33$A_M)+10)) + 
+               theme(legend.position = "bottom")
             #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-            ggplotly(plot33, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+            ggplotly(plot33, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -2123,9 +2199,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","A_M :",A_M, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("A_M")+ggtitle("Comparação: O número de autorias masculinas de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat33$A_M)+1000))
-            ggplotly(plot33, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoA_M=="2020","2015–2018","2016–2019"),")")) + ylab("A_M")+ ggtitle("O número de autorias masculinas de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat33$A_M)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot33, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
          }
       }
    )
@@ -2165,20 +2243,23 @@ shinyServer(function(input, output, session) {
    )
    output$plot34 <- renderPlotly(
       {
-         dados <- dados %>% dplyr::filter(year==input$AnoImpact_P)
+         dados <- dados %>% dplyr::filter(year==input$AnoA_F)
          if(input$optionsescolha42 == "Null")
          {
             dat34 <-dados %>% dplyr::filter(Country=="BRAZIL") %>% 
                dplyr::filter(University==input$options44,
-                      Period=="2015–2018", Frac_counting == "0")
-            plot34 <-  ggplot(dat34,aes(stringr::str_wrap(Field,width = 10), A_F, fill=Field, label= round(A_F, digits = 2), 
-                                        text=paste("A_F :",A_F, "<br>", 
+                             Period==ifelse(input$AnoA_F=="2020","2015–2018","2016–2019"), 
+                             Frac_counting=="0")
+            
+            plot34 <- ggplot(dat34, aes(stringr::str_wrap(Field,width = 10), A_F, fill=Field, label= round(A_F, digits = 2), 
+                                        text=paste("A_F:",A_F, "<br>", 
                                                    "Período:", Period))) +
-               geom_col(show.legend = FALSE) + 
-               xlab("Área Científica (2015–2018)") + ylab("A_F") + ggtitle("O número de autorias femininas de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ylim(c(0,max(dat34$A_F)+70))
-            #theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) 
-            ggplotly(plot34, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               geom_col( show.legend = FALSE) + 
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoA_F=="2020","2015–2018","2016–2019"),")")) + ylab("A_F")+ ggtitle("O número de autorias femininas de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat34$A_F)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot34, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
             
          }else
          {
@@ -2190,9 +2271,11 @@ shinyServer(function(input, output, session) {
                           text=paste(University,"<br>","A_F :",A_F, "<br>", 
                                      "Período:", "2015-2018"))) +
                geom_col(position = "dodge", show.legend = FALSE) +
-               xlab("Área Científica (2015–2018)") + ylab("A_F")+ggtitle("Comparação: O número de autorias femininas de uma universidade")+
-               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat34$A_F)+70))
-            ggplotly(plot34, tooltip = "text") %>% layout(showlegend = FALSE) %>% style(textposition = "top")
+               xlab(paste0("Área Científica", "(",ifelse(input$AnoA_F=="2020","2015–2018","2016–2019"),")")) + ylab("A_F")+ ggtitle("O número de autorias femininas de uma universidade")+
+               geom_text(position = position_dodge(width = 0.9), vjust = -0.5) + theme_bw()+ ylim(c(0,max(dat34$A_F)+10)) + 
+               theme(legend.position = "bottom")
+            #theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+            ggplotly(plot34, tooltip = "text") %>% layout(legend = list(orientation = "h", x = 0, y =-0.2)) %>% style(textposition = "top")
    
          }
       }
