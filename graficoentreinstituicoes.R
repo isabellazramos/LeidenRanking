@@ -11,7 +11,6 @@ mean2013_tidy %>%
   geom_col(position = "dodge") +
   labs(x = "Mês", y = "Valor")
 ##################################################################
-library(tidyverse)
 dat01 <-dados %>% filter(Country=="BRAZIL") %>% 
   filter(University %in% c("FEDERAL UNIVERSITY OF PARAIBA","FEDERAL UNIVERSITY OF PERNAMBUCO"),
          Period=="2015–2018", 

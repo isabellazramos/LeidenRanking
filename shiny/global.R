@@ -16,9 +16,6 @@ library("ggthemes")
 library("treemap")
 library("treemapify")
 library("leaflet")
-library("readxl")
-library("readODS")
-library("htmlTable")
 library("stringr")
 library("esquisse")
 library("gridExtra")
@@ -51,10 +48,10 @@ dred = 'rgb(100,30,30)'
 
 ##############################################################################
 ## DATA SOURCES
-dados <- readRDS("LeidenRanking.Rds")
+dados <- readRDS("../dados/LeidenRanking.Rds")
 dados <- as.data.frame(dados)
 #dados <- readRDS("LeidenRanking.Rds")
-data2 <- read.csv("LatLongBrazilianUniversities2.csv")
+data2 <- read.csv("../dados/LatLongBrazilianUniversities2.csv")
 
 brazil <- dados %>% dplyr::filter(Country=="BRAZIL", Frac_counting == 0, Field == "ALL SCIENCES",Per_End == 2019 | Per_End == 2018 | Per_End == 2017 | Per_End == 2016, 
                            University == "UNIVERSITY OF SAO PAULO" |University == "UNIVERSIDADE ESTADUAL PAULISTA"|University == "UNIVERSITY OF CAMPINAS"| University == "UNIVERSIDADE FEDERAL DO RIO DE JANEIRO" 
